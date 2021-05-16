@@ -47,7 +47,7 @@
 		<div class="row">
 			<h3>Media</h3>
 			<p>Save an image below to attach it to your tweet.</p>
-			<p style="color:#ef0000;">None yet! Please check back later. <a href="https://discord.gg/hKDey67">Join the Discord server</a> to discuss contributing your own work to this list.</p>
+			<p style="color:#ef0000;">None yet! Please check back later. <a href="https://discord.gg/S2bn8yK6Cy">Join the Discord server</a> to discuss contributing your own work to this list.</p>
 			<div class=col-md-6>
 			</div>
 			<div class=col-md-6>
@@ -62,40 +62,5 @@
 	<script src="js/jquery.stellar.min.js"></script>
     <script src="js/wow.js"></script>   
     <script src="js/main.js"></script>
-	
-	<script>
-	(function () {
-  const second = 1000,
-        minute = second * 60,
-        hour = minute * 60,
-        day = hour * 24;
-
-  let tweetstorm = "Saturday, 19 June 2021 15:00:00 UTC",
-      countDown = new Date(tweetstorm).getTime(),
-      x = setInterval(function() {    
-
-        let now = new Date().getTime(),
-            distance = countDown - now;
-
-        document.getElementById("days").innerText = Math.floor(distance / (day)),
-        document.getElementById("hours").innerText = Math.floor((distance % (day)) / (hour)),
-        document.getElementById("minutes").innerText = Math.floor((distance % (hour)) / (minute)),
-        document.getElementById("seconds").innerText = Math.floor((distance % (minute)) / second);
-
-        //do something later when date is reached
-        if (distance < 0) {
-          let countdown = document.getElementById("countdown"),
-              content = document.getElementById("message"),
-			  title = document.getElementById("hashtag-title");
-          countdown.style.display = "none";
-          content.style.display = "block";
-		  title.innerHTML = "Use the Hashtag"
-
-          clearInterval(x);
-        }
-        //seconds
-      }, 0)
-  }());
-	</script>
   </body>
 </html>
