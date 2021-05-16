@@ -8,8 +8,8 @@
     <meta name="keywords" content="arcaena, mmo, rpg, game, alagaesia, eragon, eldest, brisingr, inheritance, inheritance cycle, mmorpg, mcalagaesia, dragon, minecraft">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="author" content="MCAlagaesia">
-	<meta name="description" content="The Inheritance Cycle MMORPG. Explore the world of Alagaesia in a game of magic, dragons and adventure.">
-    <title>Arcaena - Skin Submissions</title>
+	<meta name="description" content="Tweet Storm for a New Eragon Movie or TV Show hosted by Arcaena & MCAlagaesia">
+    <title>Tweet Storm Headquarters</title>
 	
 	<link rel="shortcut icon" type="image/png" href="favicon.ico"/>
 
@@ -42,11 +42,32 @@
 		<br>
 		<div class="row">
 		  <div class="col-lg-8 col-sm-12 col-xs-12 box-item">
+			<div class="countdown">
+				<h3>Tweet Storm Countdown</h3>
+				<div id="countdown">
+					<ul>
+						<li><span id="days"></span>days</li>
+						<li><span id="hours"></span>Hours</li>
+						<li><span id="minutes"></span>Minutes</li>
+						<li><span id="seconds"></span>Seconds</li>
+					</ul>
+				</div>
+				<div id="message">
+					<div>
+						<span class="emoji">🥳</span>
+						<span class="">Start Tweeting!</span>
+						<span class="emoji">🎉</span>
+					</div>
+				</div>
+			</div>
 			<h3>About</h3>
 		    <p>More information will be posted here! Stay tuned!</p>
 	      </div>
 	      <div class="col-lg-4 col-sm-12 col-xs-12 box-item">
 	        <h3>More Information</h3>
+			<a href="https://www.timeanddate.com/countdown/generic?iso=20210620T01&p0=240&msg=Tweet+Storm+for+an+Eragon+Movie%2FTV+Show&font=slab&csz=1" target="_blank">Countdown not working? Check the backup here!</a>
+			<br><br>
+			<a href="https://discord.gg/hKDey67">Discuss on Discord</a>
 	      </div>
 	    </div>
 	  </div>
@@ -58,5 +79,37 @@
 	<script src="js/jquery.stellar.min.js"></script>
     <script src="js/wow.js"></script>   
     <script src="js/main.js"></script>
+	<script>
+	(function () {
+  const second = 1000,
+        minute = second * 60,
+        hour = minute * 60,
+        day = hour * 24;
+
+  let tweetstorm = "Saturday, 19 June 2021 15:00:00 UTC",
+      countDown = new Date(tweetstorm).getTime(),
+      x = setInterval(function() {    
+
+        let now = new Date().getTime(),
+            distance = countDown - now;
+
+        document.getElementById("days").innerText = Math.floor(distance / (day)),
+        document.getElementById("hours").innerText = Math.floor((distance % (day)) / (hour)),
+        document.getElementById("minutes").innerText = Math.floor((distance % (hour)) / (minute)),
+        document.getElementById("seconds").innerText = Math.floor((distance % (minute)) / second);
+
+        //do something later when date is reached
+        if (distance < 0) {
+          let countdown = document.getElementById("countdown"),
+              content = document.getElementById("message");
+          countdown.style.display = "none";
+          content.style.display = "block";
+
+          clearInterval(x);
+        }
+        //seconds
+      }, 0)
+  }());
+	</script>
   </body>
 </html>
