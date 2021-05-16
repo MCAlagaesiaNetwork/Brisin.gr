@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+	<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="keywords" content="arcaena, mmo, rpg, game, alagaesia, eragon, eldest, brisingr, inheritance, inheritance cycle, mmorpg, mcalagaesia, dragon, minecraft">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="author" content="MCAlagaesia">
+	<meta name="description" content="Tweet Storm for a New Eragon Movie or TV Show hosted by Arcaena & MCAlagaesia">
+    <title>Tweet Storm Headquarters</title>
+	
+	<link rel="shortcut icon" type="image/png" href="../favicon.ico"/>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+	<link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/main.css">  
+
+  </head>
+  <body>
+    <!-- Header Section Start -->
+    <header id="hero-small" data-stellar-background-ratio="0.5">    
+      <div class="container">      
+        <div class="row justify-content-md-center">
+          <div class="col-md-10">
+            <div class="contents text-center">
+              <img class="wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="0.3s" src="img/title.png" alt="Arcaena Logo" /img>
+              <p class="lead  wow fadeIn" data-wow-duration="1000ms" data-wow-delay="400ms">Headquarters</p>
+			  <br>
+			  <h2 class="section-title wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s">Tweet Storm Media</h2>
+			  <h3 class="section-title wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"><a href="index.html">Back to Main Page</a></h3>
+            </div>
+          </div>
+        </div> 
+      </div>           
+    </header>
+    <!-- Header Section End -->
+	
+      <div class="container">
+		<br>
+		<p>The Inheritance Cycle is long overdue for an adaptation on screen. Many fans have written to studios with this plea, so far without success - because they were each working alone.</p>
+		<p>The time has come to stand together, unified in our call for an adaptation! With a fandom as large as ours, an organised and consistent message has a real chance of making an impact.</p>
+			
+		<div class="row">
+			<h3>Media</h3>
+			<p>Save an image below to attach it to your tweet.</p>
+			<p style="color:#ef0000;">None yet! Please check back later. <a href="https://discord.gg/hKDey67">Join the Discord server</a> to discuss contributing your own work to this list.</p>
+			<div class=col-md-6>
+			</div>
+			<div class=col-md-6>
+			</div>
+		</div>
+	  </div>
+
+    <!-- jQuery first, then Tether, then Bootstrap JS. -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="js/jquery-min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<script src="js/jquery.stellar.min.js"></script>
+    <script src="js/wow.js"></script>   
+    <script src="js/main.js"></script>
+	
+	<script>
+	(function () {
+  const second = 1000,
+        minute = second * 60,
+        hour = minute * 60,
+        day = hour * 24;
+
+  let tweetstorm = "Saturday, 19 June 2021 15:00:00 UTC",
+      countDown = new Date(tweetstorm).getTime(),
+      x = setInterval(function() {    
+
+        let now = new Date().getTime(),
+            distance = countDown - now;
+
+        document.getElementById("days").innerText = Math.floor(distance / (day)),
+        document.getElementById("hours").innerText = Math.floor((distance % (day)) / (hour)),
+        document.getElementById("minutes").innerText = Math.floor((distance % (hour)) / (minute)),
+        document.getElementById("seconds").innerText = Math.floor((distance % (minute)) / second);
+
+        //do something later when date is reached
+        if (distance < 0) {
+          let countdown = document.getElementById("countdown"),
+              content = document.getElementById("message"),
+			  title = document.getElementById("hashtag-title");
+          countdown.style.display = "none";
+          content.style.display = "block";
+		  title.innerHTML = "Use the Hashtag"
+
+          clearInterval(x);
+        }
+        //seconds
+      }, 0)
+  }());
+	</script>
+  </body>
+</html>
