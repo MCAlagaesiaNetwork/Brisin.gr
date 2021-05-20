@@ -78,3 +78,10 @@ article {
 	background: #0F52BA;
 	color: #333;
 }
+
+@media only screen and (min-width: 1920px) {
+  .main-content img {
+	max-width: 600px;
+	padding-bottom: 30px;
+}
+}
