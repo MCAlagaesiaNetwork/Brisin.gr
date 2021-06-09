@@ -263,7 +263,7 @@ a:not([href]):not([tabindex]):focus, a:not([href]):not([tabindex]):hover {
    3. Hero Area
    ========================================================================== */
 #hero-area, #hero-small {
-  background: url(../img/hero-area.jpg) fixed no-repeat;
+  background: url(../img/hero-area.jpg) no-repeat;
   background-size: cover;
   color: #fff;
   overflow: hidden;

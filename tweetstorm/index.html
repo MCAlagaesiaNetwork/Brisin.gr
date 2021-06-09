@@ -20,9 +20,9 @@
     <link rel="stylesheet" href="css/main.css">  
 
   </head>
-  <body>
+  <body id="body">
     <!-- Header Section Start -->
-    <header id="hero-small" data-stellar-background-ratio="0.5">    
+    <header id="hero-small">    
       <div class="container">      
         <div class="row justify-content-md-center">
           <div class="col-md-10">
@@ -129,7 +129,7 @@
 			<br><br>
 			<a href="https://discord.gg/S2bn8yK6Cy" target="_blank">Discuss on Discord</a>
 			<br><br>
-			<a href="https://www.reddit.com/r/Eragon/comments/nc9jh1/new_eragon_movetv_show_tweet_storm/" target="_blank">Original Reddit post</a>
+			<a href="https://www.youtube.com/watch?v=Uo-gOoQur3A" target="_blank">Live Stream</a>
 			<br><br>
 			<a href="media.html">Tweet Media</a>
 			<br><br>
@@ -159,7 +159,6 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="js/jquery-min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-	<script src="js/jquery.stellar.min.js"></script>
     <script src="js/wow.js"></script>   
     <script src="js/main.js"></script>
 	
@@ -196,6 +195,15 @@
         //seconds
       }, 0)
   }());
+  
+  document.getElementById("body").onscroll = function myFunction() {  
+    var scrolltotop = document.scrollingElement.scrollTop;
+    var target = document.getElementById("hero-small");
+    var xvalue = "center";
+    var factor = 0.4;
+    var yvalue = scrolltotop * factor;
+    target.style.backgroundPosition = xvalue + " " + yvalue + "px";
+  }
 	</script>
   </body>
 </html>
