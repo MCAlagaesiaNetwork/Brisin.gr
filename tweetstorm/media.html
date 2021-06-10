@@ -88,7 +88,7 @@ function addMedia() {
 
 function imageLoaded() {
 	let div = document.createElement('div');
-	div.className = 'col-xl-3 col-lg-4 col-md-6 mb-4';
+	div.className = 'col-md-6 mb-4';
 	div.innerHTML = `<a id="` + i + `.` + ext + `" href="media/` + i + '.' + ext + `" download></a>`;
 	document.getElementById('media-gallery').appendChild(div);
 	document.getElementById(i + '.' + ext).appendChild(img);
