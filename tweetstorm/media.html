@@ -46,6 +46,22 @@
 		<h3>Media List</h3>
 		<p>Click or tap to save any the images and videos below to attach it to your tweet.</p>			
 		<div class="row" id="media-gallery">
+			<div class="col-md-6 mb-4">
+				<a href="media/suffering.mp4" download>
+					<video loop autoplay muted>
+						<source src="media/suffering.mp4" type="video/mp4">
+						Your browser does not support mp4 video. Click to download.
+					</video>
+				</a>
+			</div>
+			<div class="col-md-6 mb-4">
+				<a href="media/give it to me.mp4" download>
+					<video loop autoplay muted>
+						<source src="media/give it to me.mp4" type="video/mp4">
+						Your browser does not support mp4 video. Click to download.
+					</video>
+				</a>
+			</div>
 		</div>
 		
 		<h3>Notes for Artists and Contributors Creating New Work</h3>
@@ -64,43 +80,5 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="js/wow.js"></script>   
     <script src="js/main.js"></script>
-	<script>
-let i = 1;
-let exts = ["jpg","gif"];
-
-let addMediaInterval = setInterval(addMedia, 1);
-
-function addMedia() {
-	clearInterval(addMediaInterval);
-	ext = exts[0];
-	if (!ext) {
-        return;
-	}
-	else
-	{
-		img = new Image();
-		img.className="img-fluid card-img-top";
-        img.onload = imageLoaded;
-        img.onerror = imageError;
-        img.src = 'media/' + i + '.' + ext;
-    }
-}
-
-function imageLoaded() {
-	let div = document.createElement('div');
-	div.className = 'col-md-6 mb-4';
-	div.innerHTML = `<a id="` + i + `.` + ext + `" href="media/` + i + '.' + ext + `" download></a>`;
-	document.getElementById('media-gallery').appendChild(div);
-	document.getElementById(i + '.' + ext).appendChild(img);
-	i++;
-	addMediaInterval = setInterval(addMedia, 1);
-}
-
-function imageError() {
-    exts.shift();
-	i = 1;
-	addMediaInterval = setInterval(addMedia, 1);
-}
-	</script>
   </body>
 </html>
