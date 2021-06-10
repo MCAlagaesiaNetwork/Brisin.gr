@@ -46,13 +46,14 @@
 		<h3>Media List</h3>
 		<p>Click or tap to save any the images and videos below to attach it to your tweet.</p>			
 		<div class="row" id="media-gallery">
-			<div class="col-md-6 mb-4">
+			<div class="audio col-md-6 mb-4">
 				<a href="media/suffering.mp4" download>
 					<video loop autoplay muted>
 						<source src="media/suffering.mp4" type="video/mp4">
 						Your browser does not support mp4 video. Click to download.
 					</video>
 				</a>
+				<button>🔈</button>
 			</div>
 			<div class="col-md-6 mb-4">
 				<a href="media/give it to me.mp4" download>
@@ -61,14 +62,16 @@
 						Your browser does not support mp4 video. Click to download.
 					</video>
 				</a>
+				<button>🔇</button>
 			</div>
-			<div class="col-md-6 mb-4">
+			<div class="audio col-md-6 mb-4">
 				<a href="media/put it back.mp4" download>
 					<video loop autoplay muted>
 						<source src="media/put it back.mp4" type="video/mp4">
 						Your browser does not support mp4 video. Click to download.
 					</video>
 				</a>
+				<button>🔈</button>
 			</div>
 		</div>
 		
@@ -88,5 +91,26 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="js/wow.js"></script>   
     <script src="js/main.js"></script>
+	
+	<script>
+const videoContainerCollection = document.getElementsByClassName('audio'),
+videoContainerArray = [...videoContainerCollection];
+videoContainerArray.forEach(function(e) {
+  const video = e.querySelector('video'),
+  button = e.querySelector('button');
+  video.muted = true;
+  button.addEventListener('click', function() {
+    button.classList.toggle('muted');
+    if (video.muted === true) {
+      video.muted = false;
+	  button.innerHTML = "🔊";
+    }
+    else if (video.muted === false) {
+      video.muted = true;
+	  button.innerHTML = "🔈";
+    }
+  });
+});
+	</script>
   </body>
 </html>
