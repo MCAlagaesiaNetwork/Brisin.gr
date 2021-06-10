@@ -20,9 +20,9 @@
     <link rel="stylesheet" href="css/main.css">  
 
   </head>
-  <body>
+  <body id="body">
     <!-- Header Section Start -->
-    <header id="hero-small" data-stellar-background-ratio="0.5">    
+    <header id="hero-small">    
       <div class="container">      
         <div class="row justify-content-md-center">
           <div class="col-md-10">
@@ -44,26 +44,8 @@
 		<p>Pictures and videos have more reach on Twitter, so if possible, add one to all your tweets! The media should be relevant, so it's good if it's related to the Inheritance Cycle, and even better if it's related to adapting the Inheritance Cycle as a TV series!</p>
 		<p>Feel free to make your own pictures, gifs and videos as well. You can add a text overlay asking Disney to adapt the Inheritance Cycle. Once the hashtag is released, you can add the hashtag to your pictures too.</p>
 		<h3>Media List</h3>
-		<p>Right click or tap and hold to save any the images and videos below to attach it to your tweet.</p>
-		<p style="color:#ef0000;">This list is empty! Please check again right before the tweet storm starts. <a href="https://discord.gg/S2bn8yK6Cy" target="_blank">Join the Discord server</a> to discuss contributing your own work to this list.</p>			
-		<div class="row">
-			<div class=col-md-12>
-				<h4>Media with the hashtag</h4>
-			</div>
-			<div class=col-md-6>
-				<p>Please refresh this page when the <a href="index.html">timer on the homepage</a> expires!</p>
-			</div>
-			<div class=col-md-6>
-			</div>
-		</div>
-		<div class="row">
-			<div class=col-md-12>
-				<h4>Media without the hashtag</h4>
-			</div>
-			<div class=col-md-6>
-			</div>
-			<div class=col-md-6>
-			</div>
+		<p>Click or tap to save any the images and videos below to attach it to your tweet.</p>			
+		<div class="row" id="media-gallery">
 		</div>
 		
 		<h3>Notes for Artists and Contributors Creating New Work</h3>
@@ -80,8 +62,45 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="js/jquery-min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-	<script src="js/jquery.stellar.min.js"></script>
     <script src="js/wow.js"></script>   
     <script src="js/main.js"></script>
+	<script>
+let i = 1;
+let exts = ["jpg","gif"];
+
+let addMediaInterval = setInterval(addMedia, 1);
+
+function addMedia() {
+	clearInterval(addMediaInterval);
+	ext = exts[0];
+	if (!ext) {
+        return;
+	}
+	else
+	{
+		img = new Image();
+		img.className="img-fluid card-img-top";
+        img.onload = imageLoaded;
+        img.onerror = imageError;
+        img.src = 'media/' + i + '.' + ext;
+    }
+}
+
+function imageLoaded() {
+	let div = document.createElement('div');
+	div.className = 'col-xl-3 col-lg-4 col-md-6 mb-4';
+	div.innerHTML = `<a id="` + i + `.` + ext + `" href="media/` + i + '.' + ext + `" download></a>`;
+	document.getElementById('media-gallery').appendChild(div);
+	document.getElementById(i + '.' + ext).appendChild(img);
+	i++;
+	addMediaInterval = setInterval(addMedia, 1);
+}
+
+function imageError() {
+    exts.shift();
+	i = 1;
+	addMediaInterval = setInterval(addMedia, 1);
+}
+	</script>
   </body>
 </html>

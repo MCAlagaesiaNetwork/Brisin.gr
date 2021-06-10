@@ -78,10 +78,11 @@
 
 }(jQuery));
 
-/* stellar js
-  ========================================================*/
-  $.stellar({
-    horizontalScrolling: true,
-    verticalOffset: 40,
-    responsive: true
-  });
+document.getElementById("body").onscroll = function myFunction() {  
+    var scrolltotop = document.scrollingElement.scrollTop;
+    var target = document.getElementById("hero-small");
+    var xvalue = "center";
+    var factor = 0.4;
+    var yvalue = scrolltotop * factor;
+    target.style.backgroundPosition = xvalue + " " + yvalue + "px";
+  }
