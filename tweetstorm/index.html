@@ -7,8 +7,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="keywords" content="arcaena, mmo, rpg, game, alagaesia, eragon, eldest, brisingr, inheritance, inheritance cycle, mmorpg, mcalagaesia, dragon, minecraft">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="author" content="MCAlagaesia">
-	<meta name="description" content="Tweet Storm for a New Eragon Movie or TV Show hosted by Arcaena & MCAlagaesia">
+	
+	<!-- Primary Meta Tags -->
+	<title>Tweet Storm Headquarters</title>
+	<meta name="title" content="Tweet Storm Headquarters">
+	<meta name="description" content="Tweet Storm for a New Eragon TV Show -- Countdown and Hashtag">
+	<meta name="author" content="MCAlagaesia">
+	
+	<!-- Open Graph / Facebook -->
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="https://brisin.gr/tweetstorm/">
+	<meta property="og:title" content="Tweet Storm Headquarters">
+	<meta property="og:description" content="Tweet Storm for a New Eragon TV Show -- Countdown and Hashtag">
+	<meta property="og:image" content="https://brisin.gr/tweetstorm/img/metadata.jpg">
+	
+	<!-- Twitter -->
+	<meta property="twitter:card" content="summary_large_image">
+	<meta property="twitter:url" content="https://brisin.gr/tweetstorm/">
+	<meta property="twitter:title" content="Tweet Storm Headquarters">
+	<meta property="twitter:description" content="Tweet Storm for a New Eragon TV Show -- Countdown and Hashtag">
+	<meta property="twitter:image" content="https://brisin.gr/tweetstorm/img/metadata.jpg">
+
     <title>Tweet Storm Headquarters</title>
 	
 	<link rel="shortcut icon" type="image/png" href="../favicon.ico"/>
@@ -54,9 +73,11 @@
 				</div>
 				<div id="message">
 					<div>
-						<span class="emoji">🥳</span>
-						<span class="">Refresh Page for Hashtag</span>
-						<span class="emoji">🎉</span>
+						<span id="hashtag-reveal">Refresh Page for Hashtag</span>
+					</div>
+					<div>
+						<br>
+						<a href="media/">Click here to add media to your tweet.</a>
 					</div>
 				</div>
 			</div>
@@ -65,6 +86,9 @@
 				<p class="mb-0">Bring the Thunder, Alagaësians.</p>
 				<footer class="blockquote-footer">Christopher Paolini</footer>
 			</blockquote>
+			<div id="iframe-container">
+				<iframe src="https://www.youtube.com/embed/Uo-gOoQur3A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			</div>
 			<h3 id="about">About</h3>
 			<p>The Inheritance Cycle is long overdue for an adaptation on screen. Many fans have written to studios with this plea, so far without success - because they were each working alone.</p>
 			<p>The time has come to stand together, unified in our call for an adaptation! With a fandom as large as ours, an organised and consistent message has a real chance of making an impact.</p>
@@ -100,7 +124,7 @@
 			<p>Make good use of Twitter's features. Use the search bar to search for the tweet storm hashtag. Go through the results and retweet, favourite and reply to any positive tweets you see spreading our message.</p>
 			<h3 id="media">Media</h3>
 			<p>Pictures and videos have more reach on Twitter, so if possible, add one to all your tweets!</p>
-			<p><a href="media.html">You can find some on this page.</a></p>
+			<p><a href="media/">You can find some on this page.</a></p>
 			<h3 id="hashtag">Hashtag</h3>
 			<p>The hashtag is what will appear on the trending lists. Everyone should use the same hashtag in every tweet.</p>
 			<p><b>Make sure you check this website when the tweet storm starts!</b> The hashtag will only be released when the tweet storm starts. We want to reduce the use of the hashtag leading up to the tweet storm to increase the chances of trending once we do start.</p>
@@ -130,7 +154,7 @@
 			<br><br>
 			<a href="https://www.youtube.com/watch?v=Uo-gOoQur3A" target="_blank">Live Stream</a>
 			<br><br>
-			<a href="media.html">Tweet Media</a>
+			<a href="media/">Tweet Media</a>
 	      </div>
 	    </div>
 		<div class="row">
@@ -182,10 +206,13 @@
         if (distance < 0) {
           let countdown = document.getElementById("countdown"),
               content = document.getElementById("message"),
-			  title = document.getElementById("hashtag-title");
+			  title = document.getElementById("hashtag-title"),
+			  hashtag = document.getElementById("hashtag-reveal");
           countdown.style.display = "none";
           content.style.display = "block";
 		  title.innerHTML = "Use the Hashtag"
+		  hashtag.innerHTML = distance < 0 ? atob("I0VyYWdvblJlbWFrZQ==") : "Refresh Page for Hashtag";
+		  
 
           clearInterval(x);
         }
