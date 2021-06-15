@@ -62,18 +62,10 @@
 		<div class="row">
 		  <div class="col-lg-8 col-sm-12 col-xs-12 box-item">
 			<div class="countdown">
-				<h3 id="hashtag-title">Tweet Storm Countdown</h3>
-				<div id="countdown">
-					<ul>
-						<li><span id="days"></span>days</li>
-						<li><span id="hours"></span>Hours</li>
-						<li><span id="minutes"></span>Minutes</li>
-						<li><span id="seconds"></span>Seconds</li>
-					</ul>
-				</div>
+				<h3 id="hashtag-title">Use the Hashtag</h3>
 				<div id="message">
 					<div>
-						<span id="hashtag-reveal">Refresh Page for Hashtag</span>
+						<span id="hashtag-reveal">#EragonRemake</span>
 					</div>
 					<div>
 						<br>
@@ -82,13 +74,14 @@
 				</div>
 			</div>
 			<br>
+			<div id="iframe-container">
+				<iframe src="https://www.youtube.com/embed/Uo-gOoQur3A?autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			</div>
+			<br>
 			<blockquote class="blockquote text-center">
 				<p class="mb-0">Bring the Thunder, Alagaësians.</p>
 				<footer class="blockquote-footer">Christopher Paolini</footer>
 			</blockquote>
-			<div id="iframe-container">
-				<iframe src="https://www.youtube.com/embed/Uo-gOoQur3A?autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-			</div>
 			<h3 id="about">About</h3>
 			<p>The Inheritance Cycle is long overdue for an adaptation on screen. Many fans have written to studios with this plea, so far without success - because they were each working alone.</p>
 			<p>The time has come to stand together, unified in our call for an adaptation! With a fandom as large as ours, an organised and consistent message has a real chance of making an impact.</p>
@@ -126,9 +119,7 @@
 			<p>Pictures and videos have more reach on Twitter, so if possible, add one to all your tweets!</p>
 			<p><a href="media/">You can find some on this page.</a></p>
 			<h3 id="hashtag">Hashtag</h3>
-			<p>The hashtag is what will appear on the trending lists. Everyone should use the same hashtag in every tweet.</p>
-			<p><b>Make sure you check this website when the tweet storm starts!</b> The hashtag will only be released when the tweet storm starts. We want to reduce the use of the hashtag leading up to the tweet storm to increase the chances of trending once we do start.</p>
-			<p>The hashtag will appear at the top of the page when the timer reaches zero.</p>
+			<p>The hashtag is <b>#EragonRemake</b></p>
 			<h3 id="mentions">Mentions</h3>
 			<p>You should mention the <a href="https://twitter.com/Disney" target="_blank">@Disney</a> account in every tweet you send during the tweet storm.</p>
 			<p>You can do this by typing <code>@Disney</code> in your message.</p>
@@ -146,10 +137,6 @@
 	      </div>  
 	      <div class="col-lg-4 col-sm-12 col-xs-12 box-item">
 	        <h3 id="more">More Information</h3>
-			<a href="https://www.timeanddate.com/countdown/generic?iso=20210620T01&p0=240&msg=Tweet+Storm+for+an+Eragon+Movie%2FTV+Show&font=slab&csz=1" target="_blank">Countdown not working? Check the backup here!</a>
-			<br><br>
-			<a href="https://www.timeanddate.com/worldclock/fixedtime.html?iso=20210620T0100&p1=240&msg=Tweet%20Storm%20for%20an%20Eragon%20Movie/TV%20Show&fromtheme=generic" target="_blank">Find the time in your time zone</a>
-			<br><br>
 			<a href="https://discord.gg/S2bn8yK6Cy" target="_blank">Discuss on Discord</a>
 			<br><br>
 			<a href="https://www.youtube.com/watch?v=Uo-gOoQur3A" target="_blank">Live Stream</a>
@@ -161,17 +148,27 @@
 			<div class="col-md-12">
 				<h3 id="examples">Examples</h3>
 				<p>Below are some example tweets. Try to come up with your own unique messages though - the goal is to share a message, not spam!</p>
-				<p style="color:#ef0000;">The hashtag used here is an example only. <b>Do not use it.</b> The tweet storm hashtag will be different!</p>
 			</div>
-			<div class=col-md-6>
+			<div class="col-md-6 mb-4">
 				<img class="example" src="img/examples/1.jpg" /img>
-				<br><br>
+			</div>
+			<div class="col-md-6 mb-4">
+				<img class="example" src="img/examples/2.jpg" /img>
+			</div>
+			<div class="col-md-6 mb-4">
 				<img class="example" src="img/examples/3.jpg" /img>
 			</div>
-			<div class=col-md-6>
-				<img class="example" src="img/examples/2.jpg" /img>
-				<br><br>
+			<div class="col-md-6 mb-4">
 				<img class="example" src="img/examples/4.jpg" /img>
+			</div>
+			<div class="col-md-6 mb-4">
+				<img class="example" src="img/examples/5.jpg" /img>
+			</div>
+			<div class="col-md-6 mb-4">
+				<img class="example" src="img/examples/6.jpg" /img>
+			</div>
+			<div class="col-md-6 mb-4">
+				<img class="example" src="img/examples/7.jpg" /img>
 			</div>
 		</div>
 	  </div>
@@ -182,43 +179,5 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="js/wow.js"></script>   
     <script src="js/main.js"></script>
-	
-	<script>
-	(function () {
-  const second = 1000,
-        minute = second * 60,
-        hour = minute * 60,
-        day = hour * 24;
-
-  let tweetstorm = "Saturday, 19 June 2021 15:00:00 UTC",
-      countDown = new Date(tweetstorm).getTime(),
-      x = setInterval(function() {    
-
-        let now = new Date().getTime(),
-            distance = countDown - now;
-
-        document.getElementById("days").innerText = Math.floor(distance / (day)),
-        document.getElementById("hours").innerText = Math.floor((distance % (day)) / (hour)),
-        document.getElementById("minutes").innerText = Math.floor((distance % (hour)) / (minute)),
-        document.getElementById("seconds").innerText = Math.floor((distance % (minute)) / second);
-
-        //do something later when date is reached
-        if (distance < 0) {
-          let countdown = document.getElementById("countdown"),
-              content = document.getElementById("message"),
-			  title = document.getElementById("hashtag-title"),
-			  hashtag = document.getElementById("hashtag-reveal");
-          countdown.style.display = "none";
-          content.style.display = "block";
-		  title.innerHTML = "Use the Hashtag"
-		  hashtag.innerHTML = distance < 0 ? atob("I0VyYWdvblJlbWFrZQ==") : "Refresh Page for Hashtag";
-		  
-
-          clearInterval(x);
-        }
-        //seconds
-      }, 0)
-  }());
-	</script>
   </body>
 </html>

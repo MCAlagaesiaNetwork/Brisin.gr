@@ -65,6 +65,10 @@ video {
 	max-width: 100%;
 }
 
+img {
+	max-width: 100%;
+}
+
 /* ==========================================================================
    2.1 Section Title
    ========================================================================== */
@@ -155,29 +159,9 @@ video {
   padding: 10% 0 10%;
 }
 
-
 .countdown {
   margin: 0 auto;
   text-align: center;
-}
-
-.countdown h1 {
-  font-weight: normal;
-  letter-spacing: .125rem;
-  text-transform: uppercase;
-}
-
-.countdown li {
-  display: inline-block;
-  font-size: 1em;
-  list-style-type: none;
-  padding: 1em;
-  text-transform: uppercase;
-}
-
-.countdown li span {
-  display: block;
-  font-size: 3.5rem;
 }
 
 .countdown a {
@@ -209,15 +193,9 @@ iframe {
 
 #message {
   font-size: 2rem;
-  display: none;
-  padding: 1rem;
 }
 
 .emoji {
   padding: 0 .25rem;
   font-size: 4rem;
-}
-
-.example {
-	width: 100%;
 }
