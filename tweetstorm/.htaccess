@@ -1,2 +1,2 @@
 RewriteEngine On
-RedirectMatch 301 media.html media/
+RedirectMatch 301 /tweetstorm/media.html /tweetstorm/media/
