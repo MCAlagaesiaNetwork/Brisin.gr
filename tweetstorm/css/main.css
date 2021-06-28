@@ -190,3 +190,7 @@ iframe {
   padding: 0 .25rem;
   font-size: 4rem;
 }
+
+.center {
+	text-align: center;
+}
