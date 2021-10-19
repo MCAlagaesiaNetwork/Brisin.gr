@@ -1,0 +1,8 @@
+.watch {
+  border-radius: 20px;
+}
+
+.watch:hover {
+  filter:brightness(150%);
+  max-width:105%;
+}
