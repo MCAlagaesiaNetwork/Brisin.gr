@@ -57,6 +57,21 @@
     </header>
     <!-- Header Section End -->
 	
+	<!-- Modal -->
+        <div class="modal fade" id="newStormModal" tabindex="-1" role="dialog" aria-labelledby="newStormModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+        	<div class="modal-content">
+        	<div class="modal-body">
+			    <p><b>We're running another tweet storm soon.</b></p>
+				<p><i>Du Fairth Nángoröth</i> is the third tweet storm for an Inheritance Cycle adaptation. This time, we're going to be watching <i>Eragon (2006)</i> and sharing our thoughts via Twitter (with the hashtag in every tweet).</p>
+				<p>To watch the movie with us as you tweet, click on the "find out more" button below!</p>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        		<a href="du-fairth-nangoroth"><button type="button" class="btn btn-primary">Find Out More</button></a>
+        	</div>
+        	</div>
+        </div>
+        </div>
+
       <div class="container">
 		<br>
 		<div class="row">
@@ -64,9 +79,10 @@
 			<div class="countdown">
 				<div>
 					<br>
+					<p><a href="du-fairth-nangoroth/">We're running another tweet storm soon. Find out more here!</a></p>
+					<br>
 					<p>Thank you for joining us on the #EragonRemake tweet storm!</p>
-					<p><a href="outcome/">What was the outcome of the #EragonRemake Tweet Storm?</a></p>
-					<p>Read about it <a href="outcome/">here</a>. We'll keep you updated!</p>
+					<p>Read about the outcome of the #EragonRemake Tweet Storm <a href="outcome/">here</a>. We'll keep you updated!</p>
 				</div>
 			</div>
 			<br>
@@ -177,12 +193,17 @@
 			</div>
 		</div>
 	  </div>
-
     <!-- jQuery first, then Tether, then Bootstrap JS. -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="js/jquery-min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="js/wow.js"></script>   
     <script src="js/main.js"></script>
+	
+	<script type="text/javascript">
+    $(window).on('load', function() {
+        $('#newStormModal').modal('show');
+    });
+	</script>
   </body>
 </html>

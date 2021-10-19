@@ -193,3 +193,11 @@ iframe {
 .center {
 	text-align: center;
 }
+
+.modal-content {
+	background-color: #333;
+}
+
+button {
+	cursor:pointer;
+}
