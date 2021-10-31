@@ -65,7 +65,12 @@
 			<div class="countdown">
 				<h3 id="hashtag-title">Countdown to the 6<sup>th</sup> session</h3>
 				<div id="countdown">
-					<a href="https://discord.gg/Veg786Q"><h2>Vote in the poll for the new time!</h2></a>
+					<ul>
+						<li><span id="days"></span>days</li>
+						<li><span id="hours"></span>Hours</li>
+						<li><span id="minutes"></span>Minutes</li>
+						<li><span id="seconds"></span>Seconds</li>
+					</ul>
 				</div>
 				<div id="message">
 					<div>
@@ -101,5 +106,43 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="../tweetstorm/js/wow.js"></script>   
     <script src="../tweetstorm/js/main.js"></script>
+	
+	<script>
+	(function () {
+  const second = 1000,
+        minute = second * 60,
+        hour = minute * 60,
+        day = hour * 24;
+
+  let tweetstorm = "6 November 2021 22:00:00 UTC",
+      countDown = new Date(tweetstorm).getTime(),
+      x = setInterval(function() {    
+
+        let now = new Date().getTime(),
+            distance = countDown - now;
+
+        document.getElementById("days").innerText = Math.floor(distance / (day)),
+        document.getElementById("hours").innerText = Math.floor((distance % (day)) / (hour)),
+        document.getElementById("minutes").innerText = Math.floor((distance % (hour)) / (minute)),
+        document.getElementById("seconds").innerText = Math.floor((distance % (minute)) / second);
+
+        //do something later when date is reached
+        if (distance < 0) {
+          let countdown = document.getElementById("countdown"),
+              content = document.getElementById("message"),
+			  title = document.getElementById("hashtag-title"),
+			  hashtag = document.getElementById("hashtag-reveal");
+          countdown.style.display = "none";
+          content.style.display = "block";
+		  title.innerHTML = "Join Now!"
+		  
+
+          clearInterval(x);
+        }
+        //seconds
+      }, 0)
+	  console.log("Organiser use: <t:" + countDown.valueOf()/1000 + ">");
+  }());
+	</script>
   </body>
 </html>
