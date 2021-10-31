@@ -27,8 +27,6 @@
 	<meta property="twitter:title" content="Inheritance Cycle Read-Along">
 	<meta property="twitter:description" content="Read the series with the Arcaena & MCAlagaësia Community">
 	<meta property="twitter:image" content="https://brisin.gr/tweetstorm/du-afthringa-frethyai/img/metadata.jpg">
-
-    <title>Tweet Storm Headquarters</title>
 	
 	<link rel="shortcut icon" type="image/png" href="../favicon.ico"/>
 
@@ -65,14 +63,9 @@
 		<div class="row">
 		  <div class="col-lg-8 col-sm-12 col-xs-12 box-item">
 			<div class="countdown">
-				<h3 id="hashtag-title">Countdown to the 5<sup>th</sup> session</h3>
+				<h3 id="hashtag-title">Countdown to the 6<sup>th</sup> session</h3>
 				<div id="countdown">
-					<ul>
-						<li><span id="days"></span>days</li>
-						<li><span id="hours"></span>Hours</li>
-						<li><span id="minutes"></span>Minutes</li>
-						<li><span id="seconds"></span>Seconds</li>
-					</ul>
+					<a href="https://discord.gg/Veg786Q"><h2>Vote in the poll for the new time!</h2></a>
 				</div>
 				<div id="message">
 					<div>
@@ -82,8 +75,8 @@
 			</div>
 			<br>
 			<blockquote class="blockquote text-center">
-				<p class="mb-0">To join us this week, catch up to the beginning of: <b><i>Eragon</i>, Chapter 15, "<i>Saddlemaking</i>"</b></p>
-				<progress id="eragon" value="21.3" max="100"></progress>
+				<p class="mb-0">To join us this week, catch up to the beginning of: <b><i>Eragon</i>, Chapter 18, "<i>Revelation at Yazuac</i>"</b></p>
+				<progress id="eragon" value="25.8" max="100"></progress>
 			</blockquote>
 			<h3 id="about">About</h3>
 			<p>We're hosting a weekly read-along of the Inheritance Cycle.</p>
@@ -108,43 +101,5 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="../tweetstorm/js/wow.js"></script>   
     <script src="../tweetstorm/js/main.js"></script>
-	
-	<script>
-	(function () {
-  const second = 1000,
-        minute = second * 60,
-        hour = minute * 60,
-        day = hour * 24;
-
-  let tweetstorm = "31 October 2021 13:00:00 UTC",
-      countDown = new Date(tweetstorm).getTime(),
-      x = setInterval(function() {    
-
-        let now = new Date().getTime(),
-            distance = countDown - now;
-
-        document.getElementById("days").innerText = Math.floor(distance / (day)),
-        document.getElementById("hours").innerText = Math.floor((distance % (day)) / (hour)),
-        document.getElementById("minutes").innerText = Math.floor((distance % (hour)) / (minute)),
-        document.getElementById("seconds").innerText = Math.floor((distance % (minute)) / second);
-
-        //do something later when date is reached
-        if (distance < 0) {
-          let countdown = document.getElementById("countdown"),
-              content = document.getElementById("message"),
-			  title = document.getElementById("hashtag-title"),
-			  hashtag = document.getElementById("hashtag-reveal");
-          countdown.style.display = "none";
-          content.style.display = "block";
-		  title.innerHTML = "Join Now!"
-		  
-
-          clearInterval(x);
-        }
-        //seconds
-      }, 0)
-	  console.log("Organiser use: " + countDown.valueOf()/1000)
-  }());
-	</script>
   </body>
 </html>
