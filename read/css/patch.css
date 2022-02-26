@@ -73,7 +73,3 @@ ul li {
   object-fit: cover;
   z-index: 0;
 }
-
-progress {
-	width: 80%;
-}

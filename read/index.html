@@ -80,8 +80,13 @@
 			</div>
 			<br>
 			<blockquote class="blockquote text-center">
-				<p class="mb-0">To join us this week, catch up to the beginning of: <b><i>Eragon</i>, Chapter 57, "<i>Hall of the Mountain King</i>"</b></p>
-				<progress id="eragon" value="93.9" max="100"></progress>
+				<p class="mb-0">To join us this week, catch up to the beginning of: <b><i>Eldest</i>, Chapter 1, "<i>A Twin Disaster</i>"</b></p>
+				<div class="progress" style="margin-top: 10px">
+					<div class="progress-bar progress-bar-striped" role="progressbar" style="width: 100%"></div>
+				</div>
+				<div class="progress" style="margin-top: 10px">
+					<div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 0%"></div>
+				</div>
 			</blockquote>
 			<h3 id="about">About</h3>
 			<p>We're hosting a weekly read-along of the Inheritance Cycle.</p>
@@ -114,7 +119,7 @@
         hour = minute * 60,
         day = hour * 24;
 
-  let tweetstorm = "26 February 2022 12:00:00 UTC",
+  let tweetstorm = "5 March 2022 12:00:00 UTC",
       countDown = new Date(tweetstorm).getTime(),
       x = setInterval(function() {    
 
