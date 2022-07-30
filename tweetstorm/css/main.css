@@ -201,3 +201,48 @@ iframe {
 button {
 	cursor:pointer;
 }
+
+.pull-right {
+	float: right;
+}
+
+
+.article .collapse, .article .collapsing {
+  height: 15em;
+}
+
+.article .collapse {
+  position: relative;
+  display: block;
+  overflow: hidden;
+}
+
+.article .collapse.show {
+  height: auto;
+}
+
+.article .collapse.show:before {
+  display: none;
+}
+
+.article button.collapsed:after {
+  content: '+ Expand to Read More';
+}
+
+.article button:not(.collapsed):after {
+  content: '- Show Less';
+}
+
+.article button.collapsed {
+	position: relative;
+	margin-right: 2em;
+	margin-top: 1em;
+}
+
+.article div:not(.show).collapse {
+    -webkit-mask-image: linear-gradient(180deg, #000 40%, transparent);
+  }
+  
+ .article {
+	 margin-bottom:5em;
+ }
