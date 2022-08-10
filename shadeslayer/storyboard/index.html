@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+	<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="keywords" content="arcaena, mmo, rpg, game, alagaesia, eragon, eldest, brisingr, inheritance, inheritance cycle, mmorpg, mcalagaesia, dragon, minecraft">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	
+	<!-- Primary Meta Tags -->
+	<title>Shadeslayer Archives</title>
+	<meta name="title" content="Shadeslayer Archives">
+	<meta name="description" content="Production archives for the 'Shadeslayer' animated series by the MCAlagaësia Team.">
+	<meta name="author" content="MCAlagaesia">
+	
+	<!-- Open Graph / Facebook -->
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="https://brisin.gr/shadeslayer/storyboard/">
+	<meta property="og:title" content="Shadeslayer Archives">
+	<meta property="og:description" content="Production archives for the 'Shadeslayer' animated series by the MCAlagaësia Team.">
+	<meta property="og:image" content="https://brisin.gr/shadeslayer/img/metadata.jpg">
+	
+	<!-- Twitter -->
+	<meta property="twitter:card" content="summary_large_image">
+	<meta property="twitter:url" content="https://brisin.gr/shadeslayer/storyboard/">
+	<meta property="twitter:title" content="Shadeslayer Archives">
+	<meta property="twitter:description" content="Production archives for the 'Shadeslayer' animated series by the MCAlagaësia Team.">
+	<meta property="twitter:image" content="https://brisin.gr/shadeslayer/img/metadata.jpg">
+	
+	<link rel="shortcut icon" type="image/png" href="../../favicon.ico"/>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+	<link rel="stylesheet" href="../css/animate.css">
+    <link rel="stylesheet" href="../css/main.css">
+
+  </head>
+  <body id="body">
+    <!-- Header Section Start -->
+    <header id="hero-small">    
+		<video autoplay muted loop id="myVideo">
+		  <source src="../img/hero-area.webm" type="video/mp4">
+		</video>
+		<div class="container">      
+		  <div class="row justify-content-md-center">
+			<div class="col-md-10">
+			  <div class="contents text-center">
+				<img class="wow fadeInDown titlelogo" data-wow-duration="1000ms" data-wow-delay="0.3s" src="../../img/logo-slay.png" alt="Shadeslayer Logo" /img>
+				<p class="lead  wow fadeIn" data-wow-duration="1000ms" data-wow-delay="400ms">Animated Series</p>
+				<br>
+				<h2 class="section-title wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s">Storyboard</h2>
+			  </div>
+			</div>
+		  </div> 
+		</div>           
+	</header>
+    <!-- Header Section End -->
+	
+      <div class="container" id="gallery">
+	  </div>
+
+    <!-- jQuery first, then Tether, then Bootstrap JS. -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="../js/jquery-min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="../js/wow.js"></script>   
+    <script src="../js/main.js"></script>
+  </body>
+  <script>
+	var gallery = document.getElementById('gallery');
+	$(document).ready(function(){
+		for (var i = 1; i <= 90; i+=2) {
+			var html = `
+			<br>
+			<div class="row" id="media-gallery">
+				<div class="col-md-6">
+					<p class="mb-0">Frame ${i}.</p>
+					<img src="img/${i}.jpg" />
+				</div>
+			
+				<div class="col-md-6">
+					<p class="mb-0">Frame ${i+1}.</p>
+					<img src="img/${i+1}.jpg" />
+				</div>
+			</div>
+	  		`;
+			gallery.innerHTML += html;
+		}
+	});
+  </script>
+</html>
