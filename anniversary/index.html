@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+	<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="keywords" content="arcaena, mmo, rpg, game, alagaesia, eragon, eldest, brisingr, inheritance, inheritance cycle, mmorpg, mcalagaesia, dragon, minecraft">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	
+	<!-- Primary Meta Tags -->
+	<title>Ten Years of MCAlagaësia</title>
+	<meta name="title" content="Ten Years of MCAlagaësia">
+	<meta name="description" content="Celebrate ten years of MCAlagaësia with a weekend of events and entertainment.">
+	<meta name="author" content="MCAlagaesia">
+	
+	<!-- Open Graph / Facebook -->
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="https://brisin.gr/anniversary">
+	<meta property="og:title" content="Ten Years of MCAlagaësia">
+	<meta property="og:description" content="Celebrate ten years of MCAlagaësia with a weekend of events and entertainment.">
+	<meta property="og:image" content="https://brisin.gr/anniversary/img/metadata.jpg">
+	
+	<!-- Twitter -->
+	<meta property="twitter:card" content="summary_large_image">
+	<meta property="twitter:url" content="https://brisin.gr/anniversary">
+	<meta property="twitter:title" content="Ten Years of MCAlagaësia">
+	<meta property="twitter:description" content="Celebrate ten years of MCAlagaësia with a weekend of events and entertainment.">
+	<meta property="twitter:image" content="https://brisin.gr/anniversary/img/metadata.jpg">
+	
+	<link rel="shortcut icon" type="image/png" href="../favicon.ico"/>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+	<link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/patch.css">
+
+  </head>
+  <body id="body">
+    <!-- Header Section Start -->
+    <header id="hero-small">    
+	  <video autoplay muted loop id="myVideo">
+        <source src="img/hero-area.webm" type="video/mp4">
+      </video>
+      <div class="container">      
+        <div class="row justify-content-md-center">
+          <div class="col-md-10">
+            <div class="contents text-center">
+              <img class="wow fadeInDown titlelogo" data-wow-duration="1000ms" data-wow-delay="0.3s" src="img/title.png" alt="Tweet Storm Logo" /img>
+			  <br>
+			  <h2 class="section-title wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s">Ten Years of MCAlagaësia</h2>
+            </div>
+          </div>
+        </div> 
+      </div>           
+    </header>
+    <!-- Header Section End -->
+	
+      <div class="container">
+		<br>
+		<div class="row">
+		  <div class="col-lg-8 col-sm-12 col-xs-12 box-item">
+			<div class="events">
+			</div>
+	      </div>
+	      <div class="col-lg-4 col-sm-12 col-xs-12 box-item">
+	        <h3 id="more">More Information</h3>
+			<a href="https://discord.gg/arcaena" target="_blank">Join in advance</a>
+	      </div>
+	    </div>
+	  </div>
+
+    <!-- jQuery first, then Tether, then Bootstrap JS. -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="js/jquery-min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="js/wow.js"></script>   
+    <script src="js/main.js"></script>
+	
+	<script>
+		var events = [
+			{
+				id: 2,
+				date: "04 September 2023 10:00:00 UTC",
+				time: "00:00:00",
+				title: "Second Event",
+				description: "Defauldsafsadgsdgdfgsdfgsdf gsd f df hdf gh gfd hd fgh dgf h dgfh fd j fhg j fg sdfh fgt Description",
+				discord: "https://discord.gg/QQQQQQQ",
+				image: "hero-area.jpg",
+				duration: "00:00:00"
+			},
+			{
+				id: 3,
+				date: "18 August 2022 13:51:00 UTC",
+				time: "00:00:00",
+				title: "Third Event",
+				description: "Defauldsafsadgsdgdfgsdfgsdf gsd f df hdf gh gfd hd fgh dgf h dgfh fd j fhg j fg sdfh fgt Description",
+				discord: "https://discord.gg/QQQQQQQ",
+				image: "hero-area.jpg",
+				duration: "1:00:00"
+			},
+			{
+				id: 4,
+				date: "18 August 2022 12:51:00 UTC",
+				time: "00:00:00",
+				title: "Third Event",
+				description: "Defauldsafsadgsdgdfgsdfgsdf gsd f df hdf gh gfd hd fgh dgf h dgfh fd j fhg j fg sdfh fgt Description",
+				discord: "https://discord.gg/QQQQQQQ",
+				image: "hero-area.jpg",
+				duration: "1:00:00"
+			}
+		];
+
+		for (var i = 0; i < events.length; i++) {
+			var event = events[i];
+			//get event title
+			var title = event.title;
+			let countdown = new Date(event.date);
+			let date = countdown.toLocaleDateString();
+			let time = countdown.toLocaleTimeString();
+			//get date in user's timezone
+			var html = `
+			<div id="event-${event.id}" class="card">
+				<div class="card-header" style="background-image: url('img/event/${event.image}');"></div>
+				<div class="card-body">
+					<div class="event-time">
+						<p class="event-text">
+							<i class="far fa-calendar-alt"></i>
+							<span id="event-date">${date}</span>
+							<i class="far fa-clock"></i>
+							<span id="event-time">${time}</span>
+						</p>
+					</div>
+					<h3 class="card-title">${event.title}</h3>
+					<p class="card-text">${event.description}</p>
+					<a href="${event.discord}" target="_blank" class="btn btn-primary btn-discord"><i class="far fa-bell"></i> Interested</a>
+					<div id="countdown-${event.id}">
+						<i class="far fa-clock flash"></i>
+						<span id="countdown-text-${event.id}"> In <span id="days-${event.id}"></span> days, <span id="hours-${event.id}"></span> hours and <span id="minutes-${event.id}"></span> minutes</span>
+					</div>
+				</div>
+			</div>
+			`;
+			
+			$(".events").append(html);
+		}
+
+		//function to convert duration to milliseconds
+		function convertDuration(duration) {
+			var a = duration.split(':');
+			var seconds = (+a[0]) * 60 * 60 + (+a[1]) * 60 + (+a[2]);
+			return seconds * 1000;
+		}
+
+		(function () {
+			const second = 1000,
+			minute = second * 60,
+			hour = minute * 60,
+			day = hour * 24;
+			let expired = `Event Over`;
+		
+			x = setInterval(function() {
+				for (let i = 0; i < events.length; i++) {
+					let event = events[i];
+					let started = `Event Started - <span id="hours-${event.id}"></span>:<span id="minutes-${event.id}"></span> remaining`;
+					let duration = convertDuration(event.duration);
+					let countdown = new Date(event.date);
+					let now = new Date();
+					let distance = countdown - now;
+					if (distance < duration * -1) {
+						$(`#countdown-text-${event.id}`).html(expired);
+						$(`#event-${event.id}`).addClass("expired");
+					}
+					else if (distance < 0) {
+						$(`#countdown-text-${event.id}`).html(started);
+						//add green border to event card
+						$(`#event-${event.id}`).addClass("started");
+						distance = countdown - now + duration;
+					}
+					let days = Math.floor(distance / day);
+					let hours = Math.floor((distance % day) / hour);
+					let minutes = Math.floor((distance % hour) / minute);
+					$(`#days-${event.id}`).text(days);
+					$(`#hours-${event.id}`).text(hours);
+					$(`#minutes-${event.id}`).text(minutes);
+				}
+			} , 1000);
+		}());
+	</script>
+  </body>
+</html>
