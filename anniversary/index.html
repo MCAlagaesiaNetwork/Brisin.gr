@@ -247,7 +247,7 @@
 			let date = countdown.toLocaleDateString();
 			let time = countdown.toLocaleTimeString();
 			let description = event.description.replace(/\n/g, '<br>');
-			event.id = event.title.replace(/ /g, '-');
+			event.id = event.title.replace(/ /g, '-').toLowerCase();
 			//human readable xhxmxs duration
 			let duration = event.duration.split(':');
 			let hours = duration[0];
@@ -348,7 +348,7 @@
 			if (anchor) {
 				try {
 					$('html, body').animate({
-						scrollTop: $('#' + anchor).offset().top
+						scrollTop: $('#' + anchor).offset().top - 50
 					}, 1000);
 				} catch (e) {
 					$('html, body').animate({
