@@ -86,56 +86,57 @@
 				date: "04 September 2023 10:00:00 UTC",
 				time: "00:00:00",
 				title: "Second Event",
-				description: "Defauldsafsadgsdgdfgsdfgsdf gsd f df hdf gh gfd hd fgh dgf h dgfh fd j fhg j fg sdfh fgt Description",
+				description: "Defauldsafsadgsdgdfgsdfgsdf gsd f df hdf gh gfd hd fgh dgf h dgfh fd j fhg j fg sdfh fgt Description\n\ntest",
 				discord: "https://discord.gg/QQQQQQQ",
 				image: "hero-area.jpg",
-				duration: "00:00:00"
+				duration: "00:00:00",
+				location: ""
 			},
 			{
 				id: 3,
-				date: "18 August 2022 13:51:00 UTC",
+				date: "19 August 2022 10:51:00 UTC",
 				time: "00:00:00",
 				title: "Third Event",
 				description: "Defauldsafsadgsdgdfgsdfgsdf gsd f df hdf gh gfd hd fgh dgf h dgfh fd j fhg j fg sdfh fgt Description",
 				discord: "https://discord.gg/QQQQQQQ",
 				image: "hero-area.jpg",
-				duration: "1:00:00"
+				duration: "1:00:00",
+				location: ""
 			},
 			{
 				id: 4,
 				date: "18 August 2022 12:51:00 UTC",
 				time: "00:00:00",
-				title: "Third Event",
+				title: "Third Event 2",
 				description: "Defauldsafsadgsdgdfgsdfgsdf gsd f df hdf gh gfd hd fgh dgf h dgfh fd j fhg j fg sdfh fgt Description",
 				discord: "https://discord.gg/QQQQQQQ",
 				image: "hero-area.jpg",
-				duration: "1:00:00"
+				duration: "1:00:00",
+				location: ""
 			}
 		];
 
 		for (var i = 0; i < events.length; i++) {
 			var event = events[i];
-			//get event title
 			var title = event.title;
 			let countdown = new Date(event.date);
 			let date = countdown.toLocaleDateString();
 			let time = countdown.toLocaleTimeString();
-			//get date in user's timezone
+			var description = event.description.replace(/\n/g, '<br>');
+			event.id = event.title.replace(/ /g, '-');
 			var html = `
 			<div id="event-${event.id}" class="card">
 				<div class="card-header" style="background-image: url('img/event/${event.image}');"></div>
 				<div class="card-body">
 					<div class="event-time">
-						<p class="event-text">
-							<i class="far fa-calendar-alt"></i>
-							<span id="event-date">${date}</span>
-							<i class="far fa-clock"></i>
-							<span id="event-time">${time}</span>
-						</p>
+						<i class="far fa-calendar-alt"></i>
+						<span id="event-date">${date}</span>
+						<i class="far fa-clock"></i>
+						<span id="event-time">${time}</span>
 					</div>
 					<h3 class="card-title">${event.title}</h3>
-					<p class="card-text">${event.description}</p>
-					<a href="${event.discord}" target="_blank" class="btn btn-primary btn-discord"><i class="far fa-bell"></i> Interested</a>
+					<p class="card-text">${description}</p>
+					<a href="${event.discord}" target="_blank" class="btn btn-primary btn-discord"><i class="far fa-bell"></i> <span class="invite-text-${event.id}">Interested</span></a>
 					<div id="countdown-${event.id}">
 						<i class="far fa-clock flash"></i>
 						<span id="countdown-text-${event.id}"> In <span id="days-${event.id}"></span> days, <span id="hours-${event.id}"></span> hours and <span id="minutes-${event.id}"></span> minutes</span>
@@ -147,7 +148,6 @@
 			$(".events").append(html);
 		}
 
-		//function to convert duration to milliseconds
 		function convertDuration(duration) {
 			var a = duration.split(':');
 			var seconds = (+a[0]) * 60 * 60 + (+a[1]) * 60 + (+a[2]);
@@ -164,7 +164,7 @@
 			x = setInterval(function() {
 				for (let i = 0; i < events.length; i++) {
 					let event = events[i];
-					let started = `Event Started - <span id="hours-${event.id}"></span>:<span id="minutes-${event.id}"></span> remaining`;
+					let started = `Event Started - <span id="hours-${event.id}"></span>h<span id="minutes-${event.id}"></span>m remaining`;
 					let duration = convertDuration(event.duration);
 					let countdown = new Date(event.date);
 					let now = new Date();
@@ -172,11 +172,12 @@
 					if (distance < duration * -1) {
 						$(`#countdown-text-${event.id}`).html(expired);
 						$(`#event-${event.id}`).addClass("expired");
+						$('#countdown-' + event.id).removeClass("started");
 					}
 					else if (distance < 0) {
 						$(`#countdown-text-${event.id}`).html(started);
-						//add green border to event card
 						$(`#event-${event.id}`).addClass("started");
+						$(`.invite-text-${event.id}`).html("Join");
 						distance = countdown - now + duration;
 					}
 					let days = Math.floor(distance / day);
@@ -188,6 +189,17 @@
 				}
 			} , 1000);
 		}());
+
+		$(window).load(function(){
+			var url = window.location.href;
+			var anchor = url.split('#')[1];
+			if (anchor) {
+				// Scroll to the event
+				$('html, body').animate({
+					scrollTop: $('#' + anchor).offset().top - 50
+				}, 1000);
+			}
+		});
 	</script>
   </body>
 </html>
