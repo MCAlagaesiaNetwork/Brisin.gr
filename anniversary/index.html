@@ -64,6 +64,10 @@
 		  <div class="col-lg-8 col-sm-12 col-xs-12 box-item">
 			<div class="alert alert-danger hidden" role="alert">
 			</div>
+			<div class="description">
+			  <p>At this stage, events may be subject to change. This includes specific times and dates, event details, or whether an event will run at all. New events may be added as well!</p>
+			  <p>We will try to finalise the schedule closer to the weekend, so please keep checking back. If you have any questions, <a href="https://discord.gg/arcaena" target="_blank">don't hesitate to ask</a>!</p>
+			</div>
 			<div class="events">
 				<!-- currently running events and events starting soon -->
 				<div class="row">
@@ -89,7 +93,8 @@
 	      </div>
 	      <div class="col-lg-4 col-sm-12 col-xs-12 box-item">
 	        <h3 id="more">More Information</h3>
-			<a href="https://discord.gg/arcaena" target="_blank">Join in advance</a>
+			<p><a href="https://discord.gg/arcaena" target="_blank">Ask a question</a></p>
+			<p><a href="https://discord.gg/arcaena" target="_blank">Join in advance</a></p>
 	      </div>
 	    </div>
 	  </div>
@@ -104,49 +109,135 @@
 	<script>
 		let events = [
 			{
+				id: 1,
+				date: "1 October 2022 12:00:00 UTC",
+				title: "Story Time with Christopher Paolini",
+				description: "Listen to Christopher Paolini read some of his favourite passages from The Inheritance Cycle <b>LIVE</b> while exploring the actual location from the story in Minecraft.",
+				discord: "https://discord.gg/jy2chHM",
+				image: "paolini-reading.jpg",
+				duration: "01:30:00",
+				location: ""
+			},
+			{
 				id: 2,
-				date: "19 August 2022 12:41:00 UTC",
-				time: "00:00:00",
-				title: "Second Event",
-				description: "Defauldsafsadgsdgdfgsdfgsdf gsd f df hdf gh gfd hd fgh dgf h dgfh fd j fhg j fg sdfh fgt Description\n\ntest",
-				discord: "https://discord.gg/QQQQQQQ",
-				image: "hero-area.jpg",
-				duration: "00:01:00",
+				date: "1 October 2022 12:00:00 UTC",
+				title: "Interior Design Workshop",
+				description: "Learn from the best and design your own unique Minecraft building interior with the help of our talented interior designers.\n\nYou'll be able to follow a live tutorial in-game while our Interior Team help with ideas and provide real-time feedback to help you create something you're proud of.\n\nVote on your favourite creations - top voted interiors will be featured and winners will receive Arcaena Premium.",
+				discord: "https://discord.gg/jy2chHM",
+				image: "interior-workshop.jpg",
+				duration: "01:00:00",
 				location: ""
 			},
 			{
 				id: 3,
-				date: "19 August 2022 10:51:00 UTC",
-				time: "00:00:00",
-				title: "Third Event",
-				description: "Defauldsafsadgsdgdfgsdfgsdf gsd f df hdf gh gfd hd fgh dgf h dgfh fd j fhg j fg sdfh fgt Description",
-				discord: "https://discord.gg/QQQQQQQ",
-				image: "hero-area.jpg",
-				duration: "1:00:00",
+				date: "1 October 2022 12:00:00 UTC",
+				title: "Terraforming Workshop",
+				description: "Learn from the best and terraform your own realistic Minecraft terrain with the help of our talented terraformers.\n\nYou'll be able to follow a live tutorial in-game and learn WorldEdit while our Terraforming Team help with ideas and provide real-time feedback to help you create something you're proud of.\n\nVote on your favourite creations - top voted terrains will be featured and winners will receive Arcaena Premium.",
+				discord: "https://discord.gg/jy2chHM",
+				image: "terraforming-workshop.jpg",
+				duration: "02:00:00",
 				location: ""
 			},
 			{
 				id: 4,
-				date: "18 August 2022 12:54:00 UTC",
-				time: "00:00:00",
-				title: "Third Event 2",
-				description: "Defauldsafsadgsdgdfgsdfgsdf gsd f df hdf gh gfd hd fgh dgf h dgfh fd j fhg j fg sdfh fgt Description",
-				discord: "https://discord.gg/QQQQQQQ",
-				image: "hero-area.jpg",
-				duration: "1:00:00",
+				date: "1 October 2022 12:00:00 UTC",
+				title: "Building Workshop",
+				description: "Learn from the best and build your own fantasy Minecraft building with the help of our talented builders.\n\nYou'll be able to follow a live tutorial in-game while our Build Team help with ideas and provide real-time feedback to help you create something you're proud of.\n\nVote on your favourite creations - top voted builds will be featured and winners will receive Arcaena Premium.",
+				discord: "https://discord.gg/jy2chHM",
+				image: "building-workshop.jpg",
+				duration: "01:00:00",
 				location: ""
 			},
 			{
 				id: 5,
-				date: "19 August 2022 11:37:00 UTC",
-				time: "00:00:00",
-				title: "Third Event 4",
-				description: "Defauldsafsadgsdgdfgsdfgsdf gsd f df hdf gh gfd hd fgh dgf h dgfh fd j fhg j fg sdfh fgt Description",
-				discord: "https://discord.gg/QQQQQQQ",
-				image: "hero-area.jpg",
-				duration: "1:00:00",
+				date: "1 October 2022 12:00:00 UTC",
+				title: "Arcaena Music Release",
+				description: "Listen to Malte Wegmann Marcus Wood's latest instalment in the Arcaena Soundtrack - be the first to hear it on our YouTube Premiere, where you can discuss it with the community!",
+				discord: "https://discord.gg/jy2chHM",
+				image: "music.jpg",
+				duration: "00:10:00",
 				location: ""
-			}
+			},
+			{
+				id: 6,
+				date: "1 October 2022 12:00:00 UTC",
+				title: "Shade Fight",
+				description: "Work together to defeat a Shade and its armies in the MCAlagaësia Minecraft world.\n\nYou'll be playing with an alpha preview of Arcaena MMORPG boss fight game mechanics and features, facing new and unique mobs and challenges.",
+				discord: "https://discord.gg/jy2chHM",
+				image: "boss-fight.jpg",
+				duration: "00:30:00",
+				location: ""
+			},
+			{
+				id: 7,
+				date: "1 October 2022 12:00:00 UTC",
+				title: "Scavenger Hunt",
+				description: "Follow the clues through MCAlagaësia until you reach the treasure you've been looking for, testing your knowledge of the Inheritance Cycle and Minecraft skills along the way. Will you work with others as a team to reach your goal, or will you go it alone? Or will you sabotage others' efforts?\n\nThe first three to arrive at their destination will win Arcaena Premium.",
+				discord: "https://discord.gg/jy2chHM",
+				image: "hunt.jpg",
+				duration: "01:30:00",
+				location: ""
+			},
+			{
+				id: 8,
+				date: "1 October 2022 12:00:00 UTC",
+				title: "Eldest Reading Finale",
+				description: "Join our book club as we read the final chapters of Eldest. For this big finish, we'll have live voice actors and a narrator from the community, with appropriate music by Malte Wegmann, making the final battle as epic as we can make it.\n\nAs always, we'll discuss what we read at the end of the assigned chapters.\n\nIf you can't join in-game, you can still listen on Discord.",
+				discord: "https://discord.gg/jy2chHM",
+				image: "reading.jpg",
+				duration: "01:30:00",
+				location: ""
+			},
+			{
+				id: 9,
+				date: "1 October 2022 12:00:00 UTC",
+				title: "Teirm Building Timelapse",
+				description: "It's been five years since we posted a build timelapse to the MCAlagaësia YouTube channel, so we're excited to announce the release of the Teirm Build Timelapse. Be the first to see it on our YouTube Premiere, where you can discuss it with the community!",
+				discord: "https://discord.gg/jy2chHM",
+				image: "teirm-timelapse.jpg",
+				duration: "00:10:00",
+				location: ""
+			},
+			{
+				id: 10,
+				date: "1 October 2022 12:00:00 UTC",
+				title: "Cinematic 1",
+				description: "It's been two years since we posted a cinematic to the MCAlagaësia YouTube channel, so we're excited to announce the release of the new cinematic. Be the first to see it on our YouTube Premiere, where you can discuss it with the community!",
+				discord: "https://discord.gg/jy2chHM",
+				image: "cinematic.jpg",
+				duration: "00:10:00",
+				location: ""
+			},
+			{
+				id: 11,
+				date: "1 October 2022 12:00:00 UTC",
+				title: "The First Tour",
+				description: "Join a guided tour of the MCAlagaësia Minecraft world. Explore your favourite locations from the Inheritance Cycle first-hand - you can go wherever you want to go in the locations we visit! Talk to the team responsible for the builds we visit and learn how they created them.\n\nThere are two different tours available. Each will focus on different locations.",
+				discord: "https://discord.gg/jy2chHM",
+				image: "tour.jpg",
+				duration: "02:00:00",
+				location: ""
+			},
+			{
+				id: 12,
+				date: "1 October 2022 12:00:00 UTC",
+				title: "Cinematic 2",
+				description: "It's been two years since we posted a cinematic to the MCAlagaësia YouTube channel, so we're excited to announce the release of the new cinematic. Be the first to see it on our YouTube Premiere, where you can discuss it with the community!",
+				discord: "https://discord.gg/jy2chHM",
+				image: "cinematic.jpg",
+				duration: "00:10:00",
+				location: ""
+			},
+			{
+				id: 13,
+				date: "1 October 2022 12:00:00 UTC",
+				title: "The Second Tour",
+				description: "Join a guided tour of the MCAlagaësia Minecraft world. Explore your favourite locations from the Inheritance Cycle first-hand - you can go wherever you want to go in the locations we visit! Talk to the team responsible for the builds we visit and learn how they created them.\n\nThere are two different tours available. Each will focus on different locations.",
+				discord: "https://discord.gg/jy2chHM",
+				image: "tour.jpg",
+				duration: "02:00:00",
+				location: ""
+			},
 		];
 
 		for (let i = 0; i < events.length; i++) {
@@ -157,15 +248,23 @@
 			let time = countdown.toLocaleTimeString();
 			let description = event.description.replace(/\n/g, '<br>');
 			event.id = event.title.replace(/ /g, '-');
+			//human readable xhxmxs duration
+			let duration = event.duration.split(':');
+			let hours = duration[0];
+			let minutes = duration[1];
+			let seconds = duration[2];
+			let durationString = `${hours} hr ${minutes} min`;
 			let html = `
 			<div id="event-${event.id}" class="card">
 				<div class="card-header" style="background-image: url('img/event/${event.image}');"></div>
 				<div class="card-body">
 					<div class="event-time">
-						<i class="far fa-calendar-alt"></i>
+						<i class="fa fa-calendar-alt"></i>
 						<span id="event-date">${date}</span>
-						<i class="far fa-clock"></i>
+						<i class="fa fa-clock"></i>
 						<span id="event-time">${time}</span>
+						<i class="fa fa-hourglass-half"></i>
+						<span id="event-duration">${durationString}</span>
 					</div>
 					<h3 class="card-title">${event.title}</h3>
 					<p class="card-text">${description}</p>

@@ -34,7 +34,7 @@ h1, h2, h3, h4, h5 {
   font-family: 'Poppins', sans-serif;
   font-weight: 700;
   letter-spacing: 1px;
-  margin-top: 45px;
+  margin-top: 25px;
   margin-bottom: 20px;
 }
 
@@ -337,7 +337,7 @@ button {
   padding-right: 1em;
 }
 
-.event-time .far {
+.event-time .far, .event-time .fa {
   color: #949cf7;
 }
 
