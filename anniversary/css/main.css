@@ -362,6 +362,10 @@ button {
   }
 }
 
+.soon .flash {
+  color: #075eff;
+}
+
 .started .flash{
   color: #00eb75;
   -webkit-animation: none;
@@ -376,6 +380,14 @@ button {
   box-shadow: 0px 0px 10px 0px #00eb75;
 }
 
+.soon {
+  box-shadow: 0px 0px 10px 0px #075eff;
+}
+
 .expired .card-header {
   filter: grayscale(70%);
+}
+
+.hidden {
+  display: none;
 }

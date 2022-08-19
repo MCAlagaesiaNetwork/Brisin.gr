@@ -63,6 +63,26 @@
 		<div class="row">
 		  <div class="col-lg-8 col-sm-12 col-xs-12 box-item">
 			<div class="events">
+				<!-- currently running events and events starting soon -->
+				<div class="row">
+					<div class="col-md-6 hidden">
+						<div class="card">
+							<div class="card-body">
+								<h3 class="card-title">Now</h3>
+								<div id="events-now"></div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 hidden">
+						<div class="card">
+							<div class="card-body">
+								<h3 class="card-title">Soon</h3>
+								<div id="events-soon"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+
 			</div>
 	      </div>
 	      <div class="col-lg-4 col-sm-12 col-xs-12 box-item">
@@ -83,13 +103,13 @@
 		var events = [
 			{
 				id: 2,
-				date: "04 September 2023 10:00:00 UTC",
+				date: "19 August 2022 12:41:00 UTC",
 				time: "00:00:00",
 				title: "Second Event",
 				description: "Defauldsafsadgsdgdfgsdfgsdf gsd f df hdf gh gfd hd fgh dgf h dgfh fd j fhg j fg sdfh fgt Description\n\ntest",
 				discord: "https://discord.gg/QQQQQQQ",
 				image: "hero-area.jpg",
-				duration: "00:00:00",
+				duration: "00:01:00",
 				location: ""
 			},
 			{
@@ -105,9 +125,20 @@
 			},
 			{
 				id: 4,
-				date: "18 August 2022 12:51:00 UTC",
+				date: "18 August 2022 12:54:00 UTC",
 				time: "00:00:00",
 				title: "Third Event 2",
+				description: "Defauldsafsadgsdgdfgsdfgsdf gsd f df hdf gh gfd hd fgh dgf h dgfh fd j fhg j fg sdfh fgt Description",
+				discord: "https://discord.gg/QQQQQQQ",
+				image: "hero-area.jpg",
+				duration: "1:00:00",
+				location: ""
+			},
+			{
+				id: 5,
+				date: "19 August 2022 11:37:00 UTC",
+				time: "00:00:00",
+				title: "Third Event 4",
 				description: "Defauldsafsadgsdgdfgsdfgsdf gsd f df hdf gh gfd hd fgh dgf h dgfh fd j fhg j fg sdfh fgt Description",
 				discord: "https://discord.gg/QQQQQQQ",
 				image: "hero-area.jpg",
@@ -161,7 +192,15 @@
 			day = hour * 24;
 			let expired = `Event Over`;
 		
-			x = setInterval(function() {
+			function update() {
+				if ($("#events-soon").children().length == 0) {
+					$("#events-soon").parent().parent().parent().addClass("hidden");
+				}
+				if ($("#events-now").children().length == 0) {
+					$("#events-now").parent().parent().parent().addClass("hidden");
+				}
+				$("#events-now").html("");
+				$("#events-soon").html("");
 				for (let i = 0; i < events.length; i++) {
 					let event = events[i];
 					let started = `Event Started - <span id="hours-${event.id}"></span>h<span id="minutes-${event.id}"></span>m remaining`;
@@ -172,13 +211,23 @@
 					if (distance < duration * -1) {
 						$(`#countdown-text-${event.id}`).html(expired);
 						$(`#event-${event.id}`).addClass("expired");
-						$('#countdown-' + event.id).removeClass("started");
+						$('#event-' + event.id).removeClass("started");
 					}
 					else if (distance < 0) {
 						$(`#countdown-text-${event.id}`).html(started);
+						$(`#event-${event.id}`).removeClass("soon");
 						$(`#event-${event.id}`).addClass("started");
 						$(`.invite-text-${event.id}`).html("Join");
 						distance = countdown - now + duration;
+						
+						$("#events-now").append(`<a href="#event-${event.id}">${event.title}</a>`);
+						$("#events-now").parent().parent().parent().removeClass("hidden");
+					}
+					else if (distance < 1000 * 60 * 60 * 3) {
+						$(`#event-${event.id}`).addClass("soon");
+
+						$("#events-soon").append(`<a href="#event-${event.id}">${event.title}</a>`);
+						$("#events-soon").parent().parent().parent().removeClass("hidden");
 					}
 					let days = Math.floor(distance / day);
 					let hours = Math.floor((distance % day) / hour);
@@ -187,7 +236,9 @@
 					$(`#hours-${event.id}`).text(hours);
 					$(`#minutes-${event.id}`).text(minutes);
 				}
-			} , 1000);
+				setTimeout(update, 10000);
+			}
+			update();
 		}());
 
 		$(window).load(function(){
