@@ -62,6 +62,8 @@
 		<br>
 		<div class="row">
 		  <div class="col-lg-8 col-sm-12 col-xs-12 box-item">
+			<div class="alert alert-danger hidden" role="alert">
+			</div>
 			<div class="events">
 				<!-- currently running events and events starting soon -->
 				<div class="row">
@@ -242,13 +244,27 @@
 		}());
 
 		$(window).load(function(){
-			var url = window.location.href;
-			var anchor = url.split('#')[1];
+			let url = window.location.href;
+			let anchor = url.split('#')[1];
 			if (anchor) {
-				// Scroll to the event
-				$('html, body').animate({
-					scrollTop: $('#' + anchor).offset().top - 50
-				}, 1000);
+				try {
+					$('html, body').animate({
+						scrollTop: $('#' + anchor).offset().top
+					}, 1000);
+				} catch (e) {
+					$('html, body').animate({
+						scrollTop: 0
+					}, 1000);
+					// Get event name
+					let eventName = anchor.replace("event-", "");
+					eventName = eventName.replace(/-/g, " ");
+					eventName = eventName.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+					$('.alert').text(`Event "${eventName}" not found.`);
+					$('.alert').slideDown();
+					setTimeout(function () {
+						$('.alert').slideUp();
+					}, 7000);
+				}
 			}
 		});
 	</script>
