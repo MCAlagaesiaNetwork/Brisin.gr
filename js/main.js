@@ -68,14 +68,6 @@
       return false;
     })
 
-
-
-
-/* 
-   Page Loader
-   ========================================================================== */
-  $('#loader').fadeOut();
-
 }(jQuery));
 
 document.getElementById("body").onscroll = function myFunction() {  
