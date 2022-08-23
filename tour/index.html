@@ -34,21 +34,21 @@
     <link rel="stylesheet" href="../css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 	<link rel="stylesheet" href="../css/animate.css">
-    <link rel="stylesheet" href="../tweetstorm/css/main.css">
-	<link rel="stylesheet" href="css/patch.css">
+    <link rel="stylesheet" href="../css/main.css">
+	<link rel="stylesheet" href="../../css/countdown.css">
 
   </head>
   <body id="body">
     <!-- Header Section Start -->
     <header id="hero-small">    
 	  <video autoplay muted loop id="myVideo">
-        <source src="../tweetstorm/du-afthringa-frethyai/img/hero-area.webm" type="video/mp4">
+        <source src="../img/hero-area.webm" type="video/mp4">
       </video>
       <div class="container">      
         <div class="row justify-content-md-center">
           <div class="col-md-10">
             <div class="contents text-center">
-              <img class="wow fadeInDown titlelogo" data-wow-duration="1000ms" data-wow-delay="0.3s" src="../tweetstorm/du-afthringa-frethyai/img/title.png" alt="Tweet Storm Logo" /img>
+              <img class="wow fadeInDown titlelogo-brisingr" data-wow-duration="1000ms" data-wow-delay="0.3s" src="../img/brisingr.png" alt="Tweet Storm Logo" /img>
 			  <br>
 			  <h2 class="section-title wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s">MCAlagaësia Tour</h2>
             </div>
@@ -63,15 +63,7 @@
 		<div class="row">
 		  <div class="col-lg-8 col-sm-12 col-xs-12 box-item">
 			<div class="countdown">
-				<h3 id="hashtag-title">Countdown to Tour</h3>
-				<div id="countdown">
-					<ul>
-						<li><span id="days"></span>days</li>
-						<li><span id="hours"></span>Hours</li>
-						<li><span id="minutes"></span>Minutes</li>
-						<li><span id="seconds"></span>Seconds</li>
-					</ul>
-				</div>
+				<h3 id="hashtag-title">Join Now!</h3>
 				<div id="message">
 					<div>
 						<span id="hashtag-reveal"><a href="https://discord.gg/jy2chHM?event=944641520273858600" target="_blank">https://discord.gg/jy2chHM</a></span>
@@ -111,43 +103,5 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="../tweetstorm/js/wow.js"></script>   
     <script src="../tweetstorm/js/main.js"></script>
-	
-	<script>
-	(function () {
-  const second = 1000,
-        minute = second * 60,
-        hour = minute * 60,
-        day = hour * 24;
-
-  let tweetstorm = "13 March 2022 09:00:00 UTC+11",
-      countDown = new Date(tweetstorm).getTime(),
-      x = setInterval(function() {    
-
-        let now = new Date().getTime(),
-            distance = countDown - now;
-
-        document.getElementById("days").innerText = Math.floor(distance / (day)),
-        document.getElementById("hours").innerText = Math.floor((distance % (day)) / (hour)),
-        document.getElementById("minutes").innerText = Math.floor((distance % (hour)) / (minute)),
-        document.getElementById("seconds").innerText = Math.floor((distance % (minute)) / second);
-
-        //do something later when date is reached
-        if (distance < 0) {
-          let countdown = document.getElementById("countdown"),
-              content = document.getElementById("message"),
-			  title = document.getElementById("hashtag-title"),
-			  hashtag = document.getElementById("hashtag-reveal");
-          countdown.style.display = "none";
-          content.style.display = "block";
-		  title.innerHTML = "Join Now!"
-		  
-
-          clearInterval(x);
-        }
-        //seconds
-      }, 0)
-	  console.log("Organiser use: <t:" + countDown.valueOf()/1000 + ">");
-  }());
-	</script>
   </body>
 </html>
