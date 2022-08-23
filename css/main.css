@@ -399,3 +399,21 @@ button {
 .hidden {
   display: none;
 }
+
+.invisible-button:hover {
+  cursor: pointer;
+}
+
+.close {
+  color: #fff;
+  opacity: 1;
+  text-shadow: none;
+}
+
+.modal-header {
+  border-bottom: rgb(36, 36, 36) solid 1px;
+}
+
+.modal-footer {
+  border-top: rgb(36, 36, 36) solid 1px;
+}

@@ -96,7 +96,26 @@
 			<p><a href="https://discord.gg/arcaena" target="_blank">Join in advance</a></p>
 	      </div>
 	    </div>
+	  </div>  
+  <!-- Modal -->
+  <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="document">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <h3 class="modal-title" id="modalTitle"></h3>
+		  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		  </button>
+		</div>
+		<div class="modal-body">
+			<p></p>
+		</div>
+		<div class="modal-footer">
+		  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		</div>
 	  </div>
+	</div>
+  </div>
 
     <!-- jQuery first, then Tether, then Bootstrap JS. -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -115,7 +134,8 @@
 				discord: "https://discord.gg/jy2chHM",
 				image: "paolini-reading.jpg",
 				duration: "01:30:00",
-				location: ""
+				location: "",
+				info: ""
 			},
 			{
 				id: 2,
@@ -125,7 +145,7 @@
 				discord: "https://discord.gg/jy2chHM",
 				image: "interior-workshop.jpg",
 				duration: "01:00:00",
-				location: ""
+				info: ""
 			},
 			{
 				id: 3,
@@ -135,7 +155,7 @@
 				discord: "https://discord.gg/jy2chHM",
 				image: "terraforming-workshop.jpg",
 				duration: "02:00:00",
-				location: ""
+				info: ""
 			},
 			{
 				id: 4,
@@ -145,7 +165,7 @@
 				discord: "https://discord.gg/jy2chHM",
 				image: "building-workshop.jpg",
 				duration: "01:00:00",
-				location: ""
+				info: ""
 			},
 			{
 				id: 5,
@@ -155,7 +175,7 @@
 				discord: "https://discord.gg/jy2chHM",
 				image: "music.jpg",
 				duration: "00:10:00",
-				location: ""
+				info: ""
 			},
 			{
 				id: 6,
@@ -165,7 +185,7 @@
 				discord: "https://discord.gg/jy2chHM",
 				image: "boss-fight.jpg",
 				duration: "00:30:00",
-				location: ""
+				info: ""
 			},
 			{
 				id: 7,
@@ -175,7 +195,7 @@
 				discord: "https://discord.gg/jy2chHM",
 				image: "hunt.jpg",
 				duration: "01:30:00",
-				location: ""
+				info: ""
 			},
 			{
 				id: 8,
@@ -185,7 +205,7 @@
 				discord: "https://discord.gg/jy2chHM",
 				image: "reading.jpg",
 				duration: "01:30:00",
-				location: ""
+				info: ""
 			},
 			{
 				id: 9,
@@ -195,7 +215,7 @@
 				discord: "https://discord.gg/jy2chHM",
 				image: "teirm-timelapse.jpg",
 				duration: "00:10:00",
-				location: ""
+				info: ""
 			},
 			{
 				id: 10,
@@ -205,7 +225,7 @@
 				discord: "https://discord.gg/jy2chHM",
 				image: "cinematic.jpg",
 				duration: "00:10:00",
-				location: ""
+				info: ""
 			},
 			{
 				id: 11,
@@ -215,7 +235,7 @@
 				discord: "https://discord.gg/jy2chHM",
 				image: "tour.jpg",
 				duration: "02:00:00",
-				location: ""
+				info: ""
 			},
 			{
 				id: 12,
@@ -225,7 +245,7 @@
 				discord: "https://discord.gg/jy2chHM",
 				image: "cinematic.jpg",
 				duration: "00:10:00",
-				location: ""
+				info: ""
 			},
 			{
 				id: 13,
@@ -235,7 +255,7 @@
 				discord: "https://discord.gg/jy2chHM",
 				image: "tour.jpg",
 				duration: "02:00:00",
-				location: ""
+				info: ""
 			},
 		];
 
@@ -266,7 +286,12 @@
 						<span id="event-duration">${durationString}</span>
 					</div>
 					<h3 class="card-title">${event.title}</h3>
-					<p class="card-text">${description}</p>
+					<div class="card-text">
+						<p>
+							${description}
+							<a href="#" title="Click for more information" data-toggle="modal" data-target="#modal" data-info="${event.info}" data-title="${event.title}" target="_blank">More Info</span></a>
+						</p>
+					</div>
 					<a href="${event.discord}" target="_blank" class="btn btn-primary btn-discord"><i class="far fa-bell"></i> <span class="invite-text-${event.id}">Interested</span></a>
 					<div id="countdown-${event.id}">
 						<i class="far fa-clock flash"></i>
@@ -278,6 +303,18 @@
 			
 			$(".events").append(html);
 		}
+
+		$('#modal').on('show.bs.modal', function (event) {
+			let button = $(event.relatedTarget);
+			let modal = $(this);
+			let info = button.data('info');
+			if (info == "" || info == "undefined" || info == null) {
+				info = "No further information is available at this time. Please check back later!";
+			}
+			info += "<br><br>Have a question? Ask us on our <a href='https://discord.gg/jy2chHM' target='_blank'>Discord server</a>."
+			modal.find('.modal-body p').html(info);
+			modal.find('.modal-title').text(button.data('title') + " - More Info");
+		})
 
 		function convertDuration(duration) {
 			let a = duration.split(':');
