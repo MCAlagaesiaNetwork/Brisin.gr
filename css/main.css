@@ -177,9 +177,12 @@ button {
 }
 
 /* Video Backround */
-
 #hero-small .contents {
   padding: 5% 0 5%;
+}
+
+#hero-small .extra-padding {
+  padding: 10% 0 10%;
 }
 
 #hero-small video {
