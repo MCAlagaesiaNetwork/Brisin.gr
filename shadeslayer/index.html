@@ -430,5 +430,19 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="../js/wow.js"></script>   
     <script src="../js/main.js"></script>
+	<script>
+		// If the URL has an anchor, toggle the read more button of that article
+		$(window).load(function(){
+			var url = window.location.href;
+			var anchor = url.split('#')[1];
+			if (anchor) {
+				$('#collapse-' + anchor).collapse('show');
+				// Scroll to the article
+				$('html, body').animate({
+					scrollTop: $('#collapse-' + anchor).offset().top - 150
+				}, 1000);
+			}
+		});		
+	</script>
   </body>
 </html>
