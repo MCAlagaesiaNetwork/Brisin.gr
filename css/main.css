@@ -190,6 +190,13 @@ button {
   z-index: 0;
 }
 
+/* If user prefers reduced motion, hide the video */
+@media screen and (prefers-reduced-motion: reduce) {
+  #hero-small video {
+    display: none;
+  }
+}
+
 
 /* ==========================================================================
   News Articles
