@@ -360,7 +360,7 @@
 						$("#events-now").append(`<a href="#event-${event.id}">${event.title}</a>`);
 						$("#events-now").parent().parent().parent().removeClass("hidden");
 					}
-					else if (distance < 1000 * 60 * 60 * 3) {
+					else if (distance < 1000 * 60 * 60 * 6) {
 						$(`#event-${event.id}`).addClass("soon");
 
 						$("#events-soon").append(`<a href="#event-${event.id}">${event.title}</a>`);
