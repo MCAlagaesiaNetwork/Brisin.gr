@@ -305,15 +305,24 @@
 		}
 
 		$('#modal').on('show.bs.modal', function (event) {
+			$("html").addClass("modal-open");
 			let button = $(event.relatedTarget);
 			let modal = $(this);
 			let info = button.data('info');
 			if (info == "" || info == "undefined" || info == null) {
 				info = "No further information is available at this time. Please check back later!";
 			}
+			info = info.replace(/\n/g, '<br>');
 			info += "<br><br>Have a question? Ask us on our <a href='https://discord.gg/jy2chHM' target='_blank'>Discord server</a>."
 			modal.find('.modal-body p').html(info);
 			modal.find('.modal-title').text(button.data('title') + " - More Info");
+		})
+
+		$('#modal').on('hide.bs.modal', function (event) {
+			$("html").removeClass("modal-open");
+			let modal = $(this);
+			modal.find('.modal-body p').html("");
+			modal.find('.modal-title').text("");
 		})
 
 		function convertDuration(duration) {
