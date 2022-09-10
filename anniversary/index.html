@@ -396,13 +396,13 @@
 					$(`.invite-text-${event.id}`).html("Join");
 					distance = countdown - now + duration;
 					
-					$("#events-now").append(`<a href="#event-${event.id}">${event.title}</a>`);
+					$("#events-now").append(`<p><a href="#event-${event.id}">${event.title}</a></p>`);
 					$("#events-now").parent().parent().parent().removeClass("hidden");
 				}
 				else if (distance < 1000 * 60 * 60 * 6) {
 					$(`#event-${event.id}`).addClass("soon");
 					
-					$("#events-soon").append(`<a href="#event-${event.id}">${event.title}</a>`);
+					$("#events-soon").append(`<p><a href="#event-${event.id}">${event.title}</a></p>`);
 					$("#events-soon").parent().parent().parent().removeClass("hidden");
 				}
 				let days = Math.floor(distance / day);
