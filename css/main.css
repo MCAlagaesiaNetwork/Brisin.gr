@@ -227,15 +227,15 @@ button {
   display: none;
 }
 
-.article button.collapsed:after {
+.article button.readmore.collapsed:after {
   content: '+ Expand to Read More';
 }
 
-.article button:not(.collapsed):after {
+.article button.readmore:not(.collapsed):after {
   content: '- Show Less';
 }
 
-.article button.collapsed {
+.article button.readmore.collapsed {
 	position: relative;
 	margin-right: 2em;
 	margin-top: 1em;
