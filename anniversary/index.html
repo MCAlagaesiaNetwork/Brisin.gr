@@ -92,6 +92,7 @@
 					<button class="btn btn-primary btn-sm" id="sort-by-date">Date</button>
 					<button class="btn btn-primary btn-sm" id="sort-by-name">Name</button>
 					<button class="btn btn-primary btn-sm" id="sort-by-interest">Interest</button>
+					<button class="btn btn-secondary btn-sm pull-right" id="hide-past-events">Hide Past Events</button>
 				</p>
 				<div class="events-container">
 				</div>
@@ -302,6 +303,8 @@
 			return b.interest - a.interest;
 		});;
 
+		let hidePastEvents = false;
+
 		function addEvents(){
 			//clear events
 			$(".events-container").empty();
@@ -348,7 +351,11 @@
 			</div>
 			`;
 			
-			$(".events-container").append(html);
+			if (hidePastEvents && countdown < Date.now()) {
+				//do nothing
+			} else {
+				$(".events-container").append(html);
+			}
 			}
 
 			$(function () {
@@ -504,6 +511,18 @@
 				events.sort((a, b) => {
 				return b.interest - a.interest;
 				});
+			}
+			addEvents();
+			update(false);
+		});
+
+		$("#hide-past-events").click(function () {
+			hidePastEvents = !hidePastEvents;
+			if (hidePastEvents) {
+				$("#hide-past-events").text("Show Past Events");
+			}
+			else {
+				$("#hide-past-events").text("Hide Past Events");
 			}
 			addEvents();
 			update(false);
