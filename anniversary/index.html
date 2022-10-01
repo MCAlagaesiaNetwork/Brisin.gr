@@ -215,7 +215,8 @@
 				image: "hunt.jpg",
 				duration: "01:30:00",
 				info: "This event will be hosted on the MCAlagaësia Minecraft server. To join, use the IP address nearest to your location:\n<code>pacific.mcalagaesia.com</code>\n<code>useast.mcalagaesia.com</code>\n<code>uswest.mcalagaesia.com</code>\n<code>europe.mcalagaesia.com</code>\n<code>uk.mcalagaesia.com</code>.\n\nYou can then join the event server by...<ul><li>Using the command '/event'</li><li>Clicking the server selector on your hotbar</li><li>or, walking through the Event Server portal</li></ul>For more help connecting, <a href='https://play.mcalagaesia.com' target='_blank'>click here</a>.\n\n<sup>1. Total prize value and number of prizes awarded will depend on the outcome of the event and is subject to organiser discretion.</sup>",
-				interest: 33
+				interest: 33,
+				cancelled: true
 			},
 			{
 				id: 8,
@@ -420,6 +421,12 @@
 				let countdown = new Date(event.date);
 				let now = new Date();
 				let distance = countdown - now;
+				if (event.cancelled) {
+					$(`#countdown-text-${event.id}`).html("Cancelled");
+					$(`#event-${event.id}`).addClass("cancelled");
+					$(`#event-${event.id}`).addClass("expired");
+					continue;
+				}
 				if (distance < duration * -1) {
 					$(`#countdown-text-${event.id}`).html("Event Over");
 					$(`#event-${event.id}`).addClass("expired");
