@@ -358,7 +358,7 @@
 			</div>
 			`;
 			
-			if (hidePastEvents && countdown.getTime() + convertDuration(event.duration) < Date.now()) {
+			if (hidePastEvents && (countdown.getTime() + convertDuration(event.duration) < Date.now() || event.cancelled)) {
 			} else {
 				$(".events-container").append(html);
 			}
