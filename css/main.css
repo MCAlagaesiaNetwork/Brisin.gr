@@ -392,9 +392,11 @@ button {
   box-shadow: 0px 0px 10px 0px #075eff;
 }
 
+/*
 .expired .card-header {
   filter: grayscale(70%);
 }
+*/
 
 .hidden {
   display: none;
