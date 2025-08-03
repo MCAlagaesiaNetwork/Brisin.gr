@@ -5,21 +5,31 @@ $username = '';
 $password = '';
 $database = '';
 
-// Connect and fetch words
-$conn = new mysqli($host, $username, $password, $database);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-$sql = "SELECT word, definition FROM langman_words";
-$result = $conn->query($sql);
-
 $word_rows = [];
-if ($result && $result->num_rows > 0) {
-    while($row = $result->fetch_assoc()) {
-        $word_rows[] = $row;
+$db_error = null;
+
+// Connect and fetch words
+if ($host && $username && $database) {
+    try {
+        $conn = @new mysqli($host, $username, $password, $database);
+        if ($conn->connect_errno) {
+            $db_error = "Could not connect to the dictionary database.";
+        } else {
+            $sql = "SELECT word, definition FROM langman_words";
+            $result = $conn->query($sql);
+            if ($result && $result->num_rows > 0) {
+                while($row = $result->fetch_assoc()) {
+                    $word_rows[] = $row;
+                }
+            }
+            $conn->close();
+        }
+    } catch (Exception $e) {
+        $db_error = "Could not connect to the dictionary database.";
     }
+} else {
+    $db_error = "Database settings are not configured.";
 }
-$conn->close();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -160,9 +170,16 @@ function renderTable(data) {
     const tbody = document.getElementById('words_table').getElementsByTagName('tbody')[0];
     tbody.innerHTML = '';
     if (!data.length) {
+        <?php if ($db_error): ?>
+        // If DB is down, show a message in the table body
+        const row = document.createElement('tr');
+        row.innerHTML = '<td colspan="2" style="color:#ffc; background:#711c2e99;">Dictionary currently unavailable. Please try again later.</td>';
+        tbody.appendChild(row);
+        <?php else: ?>
         const row = document.createElement('tr');
         row.innerHTML = '<td colspan="2">No words found.</td>';
         tbody.appendChild(row);
+        <?php endif; ?>
         return;
     }
     data.forEach(row => {
@@ -273,7 +290,6 @@ function initialiseCopyToClipboard() {
         });
     });
 }
-
 </script>
 <script type="text/javascript" src="js/main.js"></script>
 </body>
