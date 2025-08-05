@@ -291,6 +291,21 @@ function initialiseCopyToClipboard() {
         });
     });
 }
+document.addEventListener('keydown', function(e) {
+    if (
+        (e.ctrlKey || e.metaKey) && 
+        (e.key === 'f' || e.key === 'F') &&
+        !e.shiftKey && !e.altKey && !e.isComposing
+    ) {
+        e.preventDefault();
+        const input = document.getElementById('word-search-input');
+        if (input) {
+            input.focus();
+            input.select();
+        }
+    }
+});
+
 </script>
 <script type="text/javascript" src="js/main.js"></script>
 </body>
