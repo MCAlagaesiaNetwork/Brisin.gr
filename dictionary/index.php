@@ -132,6 +132,7 @@ if ($host && $username && $database) {
     </div> 
 <script>
 const wordRows = <?php echo json_encode($word_rows, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP); ?>;
+wordRows.push({word: 'Invalid entry', definition: 'The name of the ancient language'});
 let sortState = { word: false, definition: false };
 let lastSort = 'word';
 let filterValue = '';
