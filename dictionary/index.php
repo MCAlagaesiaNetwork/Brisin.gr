@@ -36,8 +36,8 @@ if ($host && $username && $database) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="keywords" content="dictionary, ancient, language, alagaesia, eragon, eldest, brisingr, inheritance, inheritance cycle, mmorpg, dragon, paolini, christopher, mcalagaesia, minecraft, arcaena, mmo, rpg, game">
-	<meta name="title" content="Ancient Language Dictionary">
+    <meta name="keywords" content="dictionary, ancient, language, alagaesia, eragon, eldest, brisingr, inheritance, inheritance cycle, mmorpg, dragon, paolini, christopher, mcalagaesia, minecraft, arcaena, mmo, rpg, game">
+    <meta name="title" content="Ancient Language Dictionary">
     <meta name="description" content="A lexicon of ancient language words from the World of Eragon.">
     <meta name="author" content="MCAlagaesia">
     
@@ -54,8 +54,8 @@ if ($host && $username && $database) {
     <meta property="twitter:title" content="Ancient Language Dictionary">
     <meta property="twitter:description" content="A lexicon of ancient language words from the World of Eragon.">
     <meta property="twitter:image" content="https://brisin.gr/tweetstorm/img/metadata.jpg">
-	
-	<link rel="icon" href="../favicon.ico" type="image/x-icon" />
+    
+    <link rel="icon" href="../favicon.ico" type="image/x-icon" />
     <title>Ancient Language Dictionary</title>
     <link rel="stylesheet" href="css/main.css">
 </head>
@@ -73,7 +73,7 @@ if ($host && $username && $database) {
     <p style="font-size:1.15em;margin-bottom:22px;color:#eee;text-shadow:0 2px 6px #0007;">
         A lexicon of ancient language words from the World of Eragon.
     </p>
-	<div class="table-search-container">
+    <div class="table-search-container">
         <input
             type="search"
             id="word-search-input"
@@ -185,11 +185,13 @@ function renderTable(data) {
     }
     data.forEach(row => {
         const tr = document.createElement('tr');
+        const wordHtml = filterValue ? highlightMatch(row.word, filterValue) : escapeHTML(row.word);
+        const defHtml = filterValue ? highlightMatch(row.definition, filterValue) : escapeHTML(row.definition);
         tr.innerHTML = `
-            <td class="td-copiable" data-label="Ancient Word">${escapeHTML(row.word)}
+            <td class="td-copiable" data-label="Ancient Word">${wordHtml}
                 <span class="copy-tooltip">Click to copy</span>
             </td>
-            <td class="td-copiable" data-label="English Translation">${escapeHTML(row.definition)}
+            <td class="td-copiable" data-label="English Translation">${defHtml}
                 <span class="copy-tooltip">Click to copy</span>
             </td>`;
         tbody.appendChild(tr);
@@ -291,6 +293,7 @@ function initialiseCopyToClipboard() {
         });
     });
 }
+
 document.addEventListener('keydown', function(e) {
     if (
         (e.ctrlKey || e.metaKey) && 
@@ -306,6 +309,25 @@ document.addEventListener('keydown', function(e) {
     }
 });
 
+function highlightMatch(text, query) {
+    if (!query) return escapeHTML(text);
+    const normText = accentFold(text);
+    const normQuery = accentFold(query);
+    const regex = new RegExp(normQuery.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
+    let result = '';
+    let lastIndex = 0;
+    let match;
+
+    while ((match = regex.exec(normText)) !== null) {
+        const start = match.index;
+        const end = regex.lastIndex;
+        result += escapeHTML(text.slice(lastIndex, start));
+        result += '<mark>' + escapeHTML(text.slice(start, end)) + '</mark>';
+        lastIndex = end;
+    }
+    result += escapeHTML(text.slice(lastIndex));
+    return result;
+}
 </script>
 <script type="text/javascript" src="js/main.js"></script>
 </body>
