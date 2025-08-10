@@ -188,10 +188,12 @@ function renderTable(data) {
         const wordHtml = filterValue ? highlightMatch(row.word, filterValue) : escapeHTML(row.word);
         const defHtml = filterValue ? highlightMatch(row.definition, filterValue) : escapeHTML(row.definition);
         tr.innerHTML = `
-            <td class="td-copiable" data-label="Ancient Word">${wordHtml}
+            <td class="td-copiable" data-label="Ancient Word">
+                <span class="copiable-text">${wordHtml}</span>
                 <span class="copy-tooltip">Click to copy</span>
             </td>
-            <td class="td-copiable" data-label="English Translation">${defHtml}
+            <td class="td-copiable" data-label="English Translation">
+                <span class="copiable-text">${defHtml}</span>
                 <span class="copy-tooltip">Click to copy</span>
             </td>`;
         tbody.appendChild(tr);
@@ -265,9 +267,8 @@ function initialiseCopyToClipboard() {
         // --- Click copy behaviour ---
         td.addEventListener('click', function (e) {
             let tooltip = td.querySelector('.copy-tooltip');
-            let clone = td.cloneNode(true);
-            if (tooltip) clone.removeChild(clone.querySelector('.copy-tooltip'));
-            let valToCopy = clone.textContent.trim();
+            let copiableText = td.querySelector('.copiable-text');
+            let valToCopy = copiableText.textContent.trim();
             navigator.clipboard.writeText(valToCopy).then(() => {
                 tooltip.textContent = "Copied!";
                 tooltip.style.visibility = "visible";
