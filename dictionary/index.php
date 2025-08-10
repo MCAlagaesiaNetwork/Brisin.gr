@@ -264,9 +264,10 @@ function initialiseCopyToClipboard() {
 
         // --- Click copy behaviour ---
         td.addEventListener('click', function (e) {
-            // Get cell's *raw text* (not including tooltip), remove leading/trailing whitespace.
-            let valToCopy = td.childNodes[0].textContent.trim();
-            // Copy to clipboard
+            let tooltip = td.querySelector('.copy-tooltip');
+            let clone = td.cloneNode(true);
+            if (tooltip) clone.removeChild(clone.querySelector('.copy-tooltip'));
+            let valToCopy = clone.textContent.trim();
             navigator.clipboard.writeText(valToCopy).then(() => {
                 tooltip.textContent = "Copied!";
                 tooltip.style.visibility = "visible";
