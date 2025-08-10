@@ -167,7 +167,29 @@ function getFilteredRows() {
     return sorted;
 }
 
+function highlightMatch(text, query) {
+    if (!query) return escapeHTML(text);
+    const normText = accentFold(text);
+    const normQuery = accentFold(query);
+    const regex = new RegExp(normQuery.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
+    let result = '';
+    let lastIndex = 0;
+    let match;
+
+    while ((match = regex.exec(normText)) !== null) {
+        const start = match.index;
+        const end = regex.lastIndex;
+        result += escapeHTML(text.slice(lastIndex, start));
+        result += '<mark>' + escapeHTML(text.slice(start, end)) + '</mark>';
+        lastIndex = end;
+    }
+    result += escapeHTML(text.slice(lastIndex));
+    return result;
+}
+
 function renderTable(data) {
+    document.querySelectorAll('.def-source-tooltip').forEach(el => el.remove());
+
     const tbody = document.getElementById('words_table').getElementsByTagName('tbody')[0];
     tbody.innerHTML = '';
     if (!data.length) {
@@ -210,7 +232,6 @@ function renderTable(data) {
     });
 
     initialiseCopyToClipboard();
-    initialiseSourceRendering();
 }
 
 function setAriaSort(column, direction) {
@@ -247,6 +268,8 @@ document.addEventListener('DOMContentLoaded', function () {
         filterValue = this.value;
         renderTable(getFilteredRows());
     });
+
+    initialiseSourceRendering();
 });
 
 function initialiseCopyToClipboard() {
@@ -327,13 +350,14 @@ function initialiseCopyToClipboard() {
 
 function initialiseSourceRendering() {
     // Add tooltip behaviour for sources in renderTable or DOMContentLoaded:
+    if (window._sourceTooltipInitialised) return;
+    window._sourceTooltipInitialised = true;
     document.addEventListener('mouseover', function (e) {
         if (e.target.classList.contains('def-source-number')) {
             let tooltip = document.createElement('div');
             tooltip.className = "def-source-tooltip";
             tooltip.textContent = e.target.getAttribute('data-tooltip');
             document.body.appendChild(tooltip);
-            // Position tooltip near the number
             let rect = e.target.getBoundingClientRect();
             tooltip.style.left = (rect.right + window.scrollX + 8) + 'px';
             tooltip.style.top = (rect.top + window.scrollY - 2) + 'px';
@@ -384,26 +408,6 @@ document.addEventListener('keydown', function(e) {
         }
     }
 });
-
-function highlightMatch(text, query) {
-    if (!query) return escapeHTML(text);
-    const normText = accentFold(text);
-    const normQuery = accentFold(query);
-    const regex = new RegExp(normQuery.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
-    let result = '';
-    let lastIndex = 0;
-    let match;
-
-    while ((match = regex.exec(normText)) !== null) {
-        const start = match.index;
-        const end = regex.lastIndex;
-        result += escapeHTML(text.slice(lastIndex, start));
-        result += '<mark>' + escapeHTML(text.slice(start, end)) + '</mark>';
-        lastIndex = end;
-    }
-    result += escapeHTML(text.slice(lastIndex));
-    return result;
-}
 </script>
 <script type="text/javascript" src="js/main.js"></script>
 </body>
