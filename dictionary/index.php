@@ -261,22 +261,44 @@ function initialiseCopyToClipboard() {
         let hideTimer = null;
 
         // --- Hover (show after delay) ---
-        td.addEventListener('mouseenter', function () {
-            showTimer = setTimeout(() => {
-                tooltip.style.visibility = "visible";
-                tooltip.style.opacity = "1";
-            }, showDelay);
-            tooltipTimers.set(td, showTimer);
+        td.addEventListener('mouseover', function(e) {
+            // Only show tooltip if not over a source number
+            if (e.target.classList.contains('def-source-number')) {
+                tooltip.style.opacity = "0";
+                tooltip.style.visibility = "hidden";
+                if (showTimer) clearTimeout(showTimer);
+            } else if (e.currentTarget === td) {
+                // Entering the td, but not a source button
+                showTimer = setTimeout(() => {
+                    tooltip.style.visibility = "visible";
+                    tooltip.style.opacity = "1";
+                }, showDelay);
+                tooltipTimers.set(td, showTimer);
+            }
         });
-
-        td.addEventListener('mouseleave', function () {
-            if (showTimer) clearTimeout(showTimer);
-            tooltip.style.opacity = "0";
-            tooltip.style.visibility = "hidden";
+        
+        td.addEventListener('mouseout', function(e) {
+            // If leaving a source, but still inside cell (relatedTarget is inside td): show tooltip after delay
+            if (e.target.classList.contains('def-source-number')) {
+                if (td.contains(e.relatedTarget) && e.relatedTarget !== td) {
+                    showTimer = setTimeout(() => {
+                        tooltip.style.visibility = "visible";
+                        tooltip.style.opacity = "1";
+                    }, showDelay);
+                    tooltipTimers.set(td, showTimer);
+                }
+            }
+            // If we're fully leaving the whole cell
+            if (!td.contains(e.relatedTarget)) {
+                if (showTimer) clearTimeout(showTimer);
+                tooltip.style.opacity = "0";
+                tooltip.style.visibility = "hidden";
+            }
         });
 
         // --- Click copy behaviour ---
         td.addEventListener('click', function (e) {
+            if (e.target.closest('.def-source-number')) return;
             let tooltip = td.querySelector('.copy-tooltip');
             let copiableText = td.querySelector('.copiable-text');
             let valToCopy = copiableText.textContent.trim();
