@@ -15,7 +15,7 @@ if ($host && $username && $database) {
         if ($conn->connect_errno) {
             $db_error = "Could not connect to the dictionary database.";
         } else {
-            $sql = "SELECT word, definition FROM langman_words";
+            $sql = "SELECT word, definition, source FROM langman_words";
             $result = $conn->query($sql);
             if ($result && $result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
@@ -187,6 +187,15 @@ function renderTable(data) {
         const tr = document.createElement('tr');
         const wordHtml = filterValue ? highlightMatch(row.word, filterValue) : escapeHTML(row.word);
         const defHtml = filterValue ? highlightMatch(row.definition, filterValue) : escapeHTML(row.definition);
+        let sourceHtml = '';
+        if (row.source && row.source.trim()) {
+            let sources = row.source.split(',').map(s => s.trim()).filter(s => !!s);
+            if (sources.length > 0) {
+                sourceHtml = `<span class="def-sources">` + 
+                    sources.map((src, idx) => `<sup class="def-source-number" tabindex="0" aria-label="Source: ${escapeHTML(src)}" data-tooltip="${escapeHTML(src)}">${idx+1}</sup>`).join(' ') + 
+                    `</span>`;
+            }
+        }
         tr.innerHTML = `
             <td class="td-copiable" data-label="Ancient Word">
                 <span class="copiable-text">${wordHtml}</span>
@@ -194,12 +203,14 @@ function renderTable(data) {
             </td>
             <td class="td-copiable" data-label="English Translation">
                 <span class="copiable-text">${defHtml}</span>
+                ${sourceHtml}
                 <span class="copy-tooltip">Click to copy</span>
             </td>`;
         tbody.appendChild(tr);
     });
 
     initialiseCopyToClipboard();
+    initialiseSourceRendering();
 }
 
 function setAriaSort(column, direction) {
@@ -293,6 +304,51 @@ function initialiseCopyToClipboard() {
                 td.click();
             }
         });
+    });
+}
+
+function initialiseSourceRendering() {
+    // Add tooltip behaviour for sources in renderTable or DOMContentLoaded:
+    document.addEventListener('mouseover', function (e) {
+        if (e.target.classList.contains('def-source-number')) {
+            let tooltip = document.createElement('div');
+            tooltip.className = "def-source-tooltip";
+            tooltip.textContent = e.target.getAttribute('data-tooltip');
+            document.body.appendChild(tooltip);
+            // Position tooltip near the number
+            let rect = e.target.getBoundingClientRect();
+            tooltip.style.left = (rect.right + window.scrollX + 8) + 'px';
+            tooltip.style.top = (rect.top + window.scrollY - 2) + 'px';
+            e.target._defSourceTooltip = tooltip;
+        }
+    });
+    
+    document.addEventListener('mouseout', function (e) {
+        if (e.target.classList.contains('def-source-number')) {
+            let tip = e.target._defSourceTooltip;
+            if (tip) tip.remove();
+            e.target._defSourceTooltip = null;
+        }
+    });
+	
+    document.addEventListener('focusin', function (e) {
+        if (e.target.classList.contains('def-source-number')) {
+            let tooltip = document.createElement('div');
+            tooltip.className = "def-source-tooltip";
+            tooltip.textContent = e.target.getAttribute('data-tooltip');
+            document.body.appendChild(tooltip);
+            let rect = e.target.getBoundingClientRect();
+            tooltip.style.left = (rect.right + window.scrollX + 8) + 'px';
+            tooltip.style.top = (rect.top + window.scrollY - 2) + 'px';
+            e.target._defSourceTooltip = tooltip;
+        }
+    });
+    document.addEventListener('focusout', function (e) {
+        if (e.target.classList.contains('def-source-number')) {
+            let tip = e.target._defSourceTooltip;
+            if (tip) tip.remove();
+            e.target._defSourceTooltip = null;
+        }
     });
 }
 
