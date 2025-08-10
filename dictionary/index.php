@@ -349,49 +349,99 @@ function initialiseCopyToClipboard() {
 }
 
 function initialiseSourceRendering() {
-    // Add tooltip behaviour for sources in renderTable or DOMContentLoaded:
     if (window._sourceTooltipInitialised) return;
     window._sourceTooltipInitialised = true;
+
+    let currentTooltip = null;
+    let currentSourceBtn = null;
+
+    // Helper to show tooltip for a specific source button
+    function showTooltipFor(elem) {
+        hideCurrentTooltip();
+        let tooltip = document.createElement('div');
+        tooltip.className = "def-source-tooltip";
+        tooltip.textContent = elem.getAttribute('data-tooltip');
+        document.body.appendChild(tooltip);
+
+        // Position it (to right of the number)
+        let rect = elem.getBoundingClientRect();
+        tooltip.style.left = (rect.right + window.scrollX + 8) + 'px';
+        tooltip.style.top = (rect.top + window.scrollY - 2) + 'px';
+
+        currentSourceBtn = elem;
+        currentTooltip = tooltip;
+    }
+
+    function hideCurrentTooltip() {
+        if (currentTooltip) {
+            currentTooltip.remove();
+            currentTooltip = null;
+            currentSourceBtn = null;
+        }
+    }
+
+    // Mouse over (desktop hover)
     document.addEventListener('mouseover', function (e) {
         if (e.target.classList.contains('def-source-number')) {
-            let tooltip = document.createElement('div');
-            tooltip.className = "def-source-tooltip";
-            tooltip.textContent = e.target.getAttribute('data-tooltip');
-            document.body.appendChild(tooltip);
-            let rect = e.target.getBoundingClientRect();
-            tooltip.style.left = (rect.right + window.scrollX + 8) + 'px';
-            tooltip.style.top = (rect.top + window.scrollY - 2) + 'px';
-            e.target._defSourceTooltip = tooltip;
-        }
-    });
-    
-    document.addEventListener('mouseout', function (e) {
-        if (e.target.classList.contains('def-source-number')) {
-            let tip = e.target._defSourceTooltip;
-            if (tip) tip.remove();
-            e.target._defSourceTooltip = null;
+            showTooltipFor(e.target);
         }
     });
 
+    // Mouse out
+    document.addEventListener('mouseout', function (e) {
+        if (e.target.classList.contains('def-source-number')) {
+            hideCurrentTooltip();
+        }
+    });
+
+    // Keyboard accessibility
     document.addEventListener('focusin', function (e) {
         if (e.target.classList.contains('def-source-number')) {
-            let tooltip = document.createElement('div');
-            tooltip.className = "def-source-tooltip";
-            tooltip.textContent = e.target.getAttribute('data-tooltip');
-            document.body.appendChild(tooltip);
-            let rect = e.target.getBoundingClientRect();
-            tooltip.style.left = (rect.right + window.scrollX + 8) + 'px';
-            tooltip.style.top = (rect.top + window.scrollY - 2) + 'px';
-            e.target._defSourceTooltip = tooltip;
+            showTooltipFor(e.target);
         }
     });
     document.addEventListener('focusout', function (e) {
         if (e.target.classList.contains('def-source-number')) {
-            let tip = e.target._defSourceTooltip;
-            if (tip) tip.remove();
-            e.target._defSourceTooltip = null;
+            hideCurrentTooltip();
         }
     });
+
+    // Touch/click (mobile & desktop)
+    document.addEventListener('click', function (e) {
+        // Only handle left clicks/taps
+        // Find closest .def-source-number (could be a child)
+        let btn = e.target.closest('.def-source-number');
+        if (btn) {
+            if (btn !== currentSourceBtn) {
+                // Not same as open: open tooltip
+                showTooltipFor(btn);
+            } else {
+                // Same number: second tap, so hide
+                hideCurrentTooltip();
+            }
+            // Don't propagate to document (avoid closing right after open)
+            e.stopPropagation();
+            e.preventDefault();
+        } else {
+            // Click outside: close tooltip if open
+            hideCurrentTooltip();
+        }
+    });
+
+    document.addEventListener('touchend', function (e) {
+        let btn = e.target.closest('.def-source-number');
+        if (btn) {
+            if (btn !== currentSourceBtn) {
+                showTooltipFor(btn);
+            } else {
+                hideCurrentTooltip();
+            }
+            e.stopPropagation();
+            e.preventDefault();
+        } else {
+            hideCurrentTooltip();
+        }
+    }, {passive:false});
 }
 
 document.addEventListener('keydown', function(e) {
