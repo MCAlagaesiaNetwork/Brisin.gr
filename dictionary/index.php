@@ -354,62 +354,127 @@ function initialiseSourceRendering() {
 
     let currentTooltip = null;
     let currentSourceBtn = null;
+    let hideTimer = null;
+    let hoverNumber = false, hoverTooltip = false;
+
+    function markdownToHtml(text) {
+        return text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, function(_, label, url) {
+            const safeUrl = url.replace(/"/g, '&quot;');
+            return `<a href="${safeUrl}" target="_blank" rel="noopener noreferrer">${label}</a>`;
+        });
+    }
 
     // Helper to show tooltip for a specific source button
     function showTooltipFor(elem) {
-        hideCurrentTooltip();
+        if (currentTooltip) hideCurrentTooltip();
+    
+        hoverNumber = true;
+        hoverTooltip = false;
+    
         let tooltip = document.createElement('div');
         tooltip.className = "def-source-tooltip";
-        tooltip.textContent = elem.getAttribute('data-tooltip');
+        tooltip.innerHTML = markdownToHtml(elem.getAttribute('data-tooltip'));
+        
+        // Temporarily hide-offscreen to measure width without a flicker
+        tooltip.style.visibility = 'hidden';
+        tooltip.style.left = '-9999px';
+        tooltip.style.top = '0px';
+    
         document.body.appendChild(tooltip);
-
-        // Position it (to right of the number)
+    
         let rect = elem.getBoundingClientRect();
-        tooltip.style.left = (rect.right + window.scrollX + 8) + 'px';
-        tooltip.style.top = (rect.top + window.scrollY - 2) + 'px';
-
-        currentSourceBtn = elem;
+        let tooltipWidth = tooltip.offsetWidth;
+    
+        // Amount of space from the right edge of the element to the edge of the viewport
+        let spaceRight = window.innerWidth - (rect.right);
+    
+        // Space needed to fit tooltip plus desired margin (e.g. 12px for some wiggle room)
+        let requiredSpace = tooltipWidth + 12;
+    
+        // Decide placement
+        if (spaceRight < requiredSpace) {
+            // Not enough space right: show BELOW and CENTRED
+            tooltip.style.left = Math.max(8, window.scrollX + rect.left + rect.width/2 - tooltipWidth/2) + 'px';
+            tooltip.style.top = (rect.bottom + window.scrollY + 8) + 'px';
+        } else {
+            // Plenty of space right: show to the right (classic behaviour)
+            tooltip.style.left = (rect.right + window.scrollX + 6) + 'px';
+            tooltip.style.top = (rect.top + window.scrollY - 2) + 'px';
+        }
+        tooltip.style.visibility = '';
+    
         currentTooltip = tooltip;
+        currentSourceBtn = elem;
+    
+        // Track hover for both number and tooltip
+        elem.addEventListener('mouseenter', onNumEnter);
+        elem.addEventListener('mouseleave', onNumLeave);
+        tooltip.addEventListener('mouseenter', onTooltipEnter);
+        tooltip.addEventListener('mouseleave', onTooltipLeave);
     }
 
+    function onNumEnter() {
+        hoverNumber = true;
+        clearTimeout(hideTimer);
+    }
+    function onNumLeave() {
+        hoverNumber = false;
+        scheduleHideIfNotHovered();
+    }
+    function onTooltipEnter() {
+        hoverTooltip = true;
+        clearTimeout(hideTimer);
+    }
+    function onTooltipLeave() {
+        hoverTooltip = false;
+        scheduleHideIfNotHovered();
+    }
+    function scheduleHideIfNotHovered() {
+        clearTimeout(hideTimer);
+        hideTimer = setTimeout(() => {
+            if (!hoverNumber && !hoverTooltip) hideCurrentTooltip();
+        }, 180);
+    }
     function hideCurrentTooltip() {
         if (currentTooltip) {
-            currentTooltip.remove();
-            currentTooltip = null;
-            currentSourceBtn = null;
+            currentTooltip.removeEventListener('mouseenter', onTooltipEnter);
+            currentTooltip.removeEventListener('mouseleave', onTooltipLeave);
+            if (currentTooltip.parentNode) currentTooltip.parentNode.removeChild(currentTooltip);
         }
+        if (currentSourceBtn) {
+            currentSourceBtn.removeEventListener('mouseenter', onNumEnter);
+            currentSourceBtn.removeEventListener('mouseleave', onNumLeave);
+        }
+        currentTooltip = null;
+        currentSourceBtn = null;
+        hoverNumber = false;
+        hoverTooltip = false;
+        clearTimeout(hideTimer);
     }
 
-    // Mouse over (desktop hover)
+    // Mouseover to open tooltip (desktop)
     document.addEventListener('mouseover', function (e) {
         if (e.target.classList.contains('def-source-number')) {
             showTooltipFor(e.target);
         }
     });
 
-    // Mouse out
-    document.addEventListener('mouseout', function (e) {
-        if (e.target.classList.contains('def-source-number')) {
-            hideCurrentTooltip();
-        }
+    // Keyboard (focus) opens; closes on blur/escape
+    document.addEventListener('focusin', function(e) {
+        if (e.target.classList.contains('def-source-number')) showTooltipFor(e.target);
+    });
+    document.addEventListener('focusout', function(e) {
+        if (e.target.classList.contains('def-source-number')) scheduleHideIfNotHovered();
+    });
+    document.addEventListener('keydown', function(e){
+        if (e.key === "Escape") hideCurrentTooltip();
     });
 
-    // Keyboard accessibility
-    document.addEventListener('focusin', function (e) {
-        if (e.target.classList.contains('def-source-number')) {
-            showTooltipFor(e.target);
-        }
-    });
-    document.addEventListener('focusout', function (e) {
-        if (e.target.classList.contains('def-source-number')) {
-            hideCurrentTooltip();
-        }
-    });
-
-    // Touch/click (mobile & desktop)
-    document.addEventListener('click', function (e) {
-        // Only handle left clicks/taps
-        // Find closest .def-source-number (could be a child)
+    // Tapping or clicking toggles tooltip for that number (mobile & desktop)
+    document.addEventListener('click', function(e) {
+        // If click was inside tooltip, allow (do not close)
+        if (currentTooltip && currentTooltip.contains(e.target)) return;
+    
         let btn = e.target.closest('.def-source-number');
         if (btn) {
             if (btn !== currentSourceBtn) {
@@ -429,6 +494,9 @@ function initialiseSourceRendering() {
     });
 
     document.addEventListener('touchend', function (e) {
+        // If touch was inside tooltip, allow (do not close)
+        if (currentTooltip && currentTooltip.contains(e.target)) return;
+    
         let btn = e.target.closest('.def-source-number');
         if (btn) {
             if (btn !== currentSourceBtn) {

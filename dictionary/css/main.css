@@ -345,6 +345,12 @@ a.option-box p {
     font-weight: 400 !important;
 }
 
+.table-sort tr:last-child .copy-tooltip {
+    top: auto;
+    bottom: 90%;
+    transform: translateX(-50%) translateY(-10%);
+}
+
 .td-copiable {
     cursor: pointer;
     position: relative;
@@ -369,4 +375,63 @@ mark {
     color: #230e00;
     padding: 0 2px;
     border-radius: 5px;
+}
+
+.def-sources {
+    position: absolute;
+    bottom: 7px;
+    right: 10px;
+    z-index: 5;
+    font-size: 0.97em;
+    pointer-events: none; /* source numbers themselves have pointer-events for tooltip */
+}
+.td-copiable .def-sources {
+    pointer-events: auto;
+}
+
+.def-source-number {
+    color: #ffd687;
+    background: #263244;
+    border-radius: 4px;
+    padding: 2px 5px;
+    margin: 0 1px;
+    cursor: pointer;
+    border: 1px solid #fcdc77aa;
+    font-size: 0.85em;
+    vertical-align: baseline;
+    box-shadow: 0 1px 5px #0005;
+    pointer-events: auto;
+    transition: background 0.21s, color 0.17s;
+    outline: none;
+}
+.def-source-number:hover {
+    background: #ffe8b0;
+    color: #624100;
+    border: 1px solid #ffd052;
+}
+
+
+/* Tooltip for sources */
+.def-source-tooltip {
+    position: absolute;
+    z-index: 9999;
+    background: #263244e5;
+    color: #ffeab9;
+    font-size: 1.01em;
+    padding: 7px 16px;
+    border-radius: 9px;
+    box-shadow: 0 3px 16px #0006;
+    pointer-events: auto;
+    border: 1px solid #efd37e9c;
+    white-space: pre-line;
+    max-width: 300px;
+	cursor: default;
+}
+
+.def-source-tooltip a {
+    color: #96daf0;
+    text-decoration: underline;
+}
+.def-source-tooltip a:hover {
+    color: #ffd757;
 }
