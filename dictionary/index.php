@@ -250,15 +250,10 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function initialiseCopyToClipboard() {
-    // Handles all .td-copiable cells
-    const showDelay = 380; // ms to show tooltip after hover
-    const hideDelay = 250;
-    let tooltipTimers = new WeakMap();
-
+    const showDelay = 380;
     document.querySelectorAll('.td-copiable').forEach(td => {
         const tooltip = td.querySelector('.copy-tooltip');
         let showTimer = null;
-        let hideTimer = null;
 
         // --- Hover (show after delay) ---
         td.addEventListener('mouseover', function(e) {
@@ -266,31 +261,33 @@ function initialiseCopyToClipboard() {
             if (e.target.classList.contains('def-source-number')) {
                 tooltip.style.opacity = "0";
                 tooltip.style.visibility = "hidden";
-                if (showTimer) clearTimeout(showTimer);
+                if (showTimer) { clearTimeout(showTimer); showTimer = null; }
             } else if (e.currentTarget === td) {
                 // Entering the td, but not a source button
+                if (showTimer) clearTimeout(showTimer);
                 showTimer = setTimeout(() => {
                     tooltip.style.visibility = "visible";
                     tooltip.style.opacity = "1";
+                    showTimer = null;
                 }, showDelay);
-                tooltipTimers.set(td, showTimer);
             }
         });
-        
+
         td.addEventListener('mouseout', function(e) {
             // If leaving a source, but still inside cell (relatedTarget is inside td): show tooltip after delay
             if (e.target.classList.contains('def-source-number')) {
                 if (td.contains(e.relatedTarget) && e.relatedTarget !== td) {
+                    if (showTimer) clearTimeout(showTimer);
                     showTimer = setTimeout(() => {
                         tooltip.style.visibility = "visible";
                         tooltip.style.opacity = "1";
+                        showTimer = null;
                     }, showDelay);
-                    tooltipTimers.set(td, showTimer);
                 }
             }
             // If we're fully leaving the whole cell
             if (!td.contains(e.relatedTarget)) {
-                if (showTimer) clearTimeout(showTimer);
+                if (showTimer) { clearTimeout(showTimer); showTimer = null; }
                 tooltip.style.opacity = "0";
                 tooltip.style.visibility = "hidden";
             }
@@ -299,7 +296,6 @@ function initialiseCopyToClipboard() {
         // --- Click copy behaviour ---
         td.addEventListener('click', function (e) {
             if (e.target.closest('.def-source-number')) return;
-            let tooltip = td.querySelector('.copy-tooltip');
             let copiableText = td.querySelector('.copiable-text');
             let valToCopy = copiableText.textContent.trim();
             navigator.clipboard.writeText(valToCopy).then(() => {
@@ -352,7 +348,7 @@ function initialiseSourceRendering() {
             e.target._defSourceTooltip = null;
         }
     });
-	
+
     document.addEventListener('focusin', function (e) {
         if (e.target.classList.contains('def-source-number')) {
             let tooltip = document.createElement('div');
