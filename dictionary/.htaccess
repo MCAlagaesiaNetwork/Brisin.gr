@@ -1,0 +1,3 @@
+# Redirect everything to https://arcaena.com/dictionary
+RewriteEngine On
+RewriteRule ^(.*)$ https://arcaena.com/dictionary [R=301,L]
